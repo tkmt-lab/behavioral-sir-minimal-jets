@@ -1,0 +1,42 @@
+{
+  "status": "PASS",
+  "date": "2026-11-06",
+  "pages": 8,
+  "all_pages_viewed": true,
+  "inspected_pages": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+  ],
+  "build": "pdfTeX 3.141592653-2.6-1.40.26 (TeX Live 2025/dev/Debian), two pdflatex passes, -no-shell-escape; SOURCE_DATE_EPOCH=1793923200; Poppler rendering",
+  "source_sha256": "adb5299830ae9386cb8bca5fe9ee12052ba53598976f3b1f289d89a4a388d394",
+  "table_sha256": "e00ad10998c48ddd73197e60651a14895d33a4d08421fc53c3d70c42e9a31bd7",
+  "pdf_sha256": "a4337166c55777a79f55cd2d0e10fb78425f376323d192344f428cdfeb05db45",
+  "overfull_boxes": false,
+  "undefined_references": false,
+  "missing_glyphs": false,
+  "visual_findings": "Both PDFs have readable text and equations, with no clipping or overlap.",
+  "limits": "Layout and reference validation of both regenerated PDFs; not an independent mathematical review. Original companion fingerprints remain in source-derivatives.json.",
+  "companion": {
+    "pages": 9,
+    "all_pages_viewed": true,
+    "inspected_pages": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+    ],
+    "source_sha256": "6689d03fc3aaeeb9741b60c4169c831e5ecb3b20eb1884a36baa09985d940d3b",
+    "pdf_sha256": "ab6e2378648e9da9972c19ec79ed9a32c9503bcf8b50f27020cf9d63011b4e14"
+  }
+}

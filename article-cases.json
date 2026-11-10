@@ -1,0 +1,185 @@
+{
+  "description": "Exact transcription of main certificate data; interval endpoints are rational and outward-rounded, not fitted roots.",
+  "cases": [
+    {
+      "k": "2",
+      "root_polynomial_ascending": [
+        "46225",
+        "-119970",
+        "59952",
+        "-14112",
+        "1152"
+      ],
+      "gamma_numerator_ascending": [
+        1565845,
+        -857568,
+        -31392,
+        12672
+      ],
+      "gamma_denominator": 1340525,
+      "displayed_root_enclosure": [
+        "986798290863/2000000000000",
+        "2466995727159/5000000000000"
+      ],
+      "true_jets_0_to_4": [
+        "1",
+        "1",
+        "-3",
+        "4",
+        "10"
+      ],
+      "true_J4_determinant": "16",
+      "alternate_J4_determinant_enclosure": [
+        "-197/10",
+        "-1967/100"
+      ],
+      "fifth_difference_enclosure": [
+        "-101/100",
+        "-49/50"
+      ],
+      "alternate_coordinate_enclosures": {
+        "alpha": [
+          "243/250",
+          "39/40"
+        ],
+        "gamma": [
+          "423/500",
+          "849/1000"
+        ],
+        "S": [
+          "1567/1000",
+          "157/100"
+        ],
+        "Z": [
+          "106/125",
+          "851/1000"
+        ],
+        "R": [
+          "743/100",
+          "7433/1000"
+        ]
+      },
+      "sturm_count_in_0_1": 1
+    },
+    {
+      "k": "3",
+      "root_polynomial_ascending": [
+        "430923",
+        "-1326500",
+        "1015240",
+        "-352300",
+        "44000"
+      ],
+      "gamma_numerator_ascending": [
+        544397116,
+        -10844350,
+        -387643000,
+        68200000
+      ],
+      "gamma_denominator": 867447999,
+      "displayed_root_enclosure": [
+        "4654318384721/10000000000000",
+        "1163579596181/2500000000000"
+      ],
+      "true_jets_0_to_4": [
+        "1",
+        "1",
+        "-4",
+        "13",
+        "-97/2"
+      ],
+      "true_J4_determinant": "1467/8",
+      "alternate_J4_determinant_enclosure": [
+        "-10818/25",
+        "-43269/100"
+      ],
+      "fifth_difference_enclosure": [
+        "-1321/100",
+        "-659/50"
+      ],
+      "alternate_coordinate_enclosures": {
+        "alpha": [
+          "869/1000",
+          "109/125"
+        ],
+        "gamma": [
+          "531/1000",
+          "267/500"
+        ],
+        "S": [
+          "41/50",
+          "823/1000"
+        ],
+        "Z": [
+          "107/200",
+          "269/500"
+        ],
+        "R": [
+          "8177/1000",
+          "409/50"
+        ]
+      },
+      "sturm_count_in_0_1": 1
+    },
+    {
+      "k": "5/2",
+      "root_polynomial_ascending": [
+        "660490",
+        "-1885095",
+        "1223067",
+        "-364248",
+        "38556"
+      ],
+      "gamma_numerator_ascending": [
+        71805073975,
+        -29056911273,
+        -17421405048,
+        3144665916
+      ],
+      "gamma_denominator": 82898099900,
+      "displayed_root_enclosure": [
+        "2395787973843/5000000000000",
+        "4791575947689/10000000000000"
+      ],
+      "true_jets_0_to_4": [
+        "1",
+        "1",
+        "-7/2",
+        "65/8",
+        "-391/32"
+      ],
+      "true_J4_determinant": "9495/128",
+      "alternate_J4_determinant_enclosure": [
+        "-6493/50",
+        "-12983/100"
+      ],
+      "fifth_difference_enclosure": [
+        "-517/100",
+        "-257/50"
+      ],
+      "alternate_coordinate_enclosures": {
+        "alpha": [
+          "459/500",
+          "921/1000"
+        ],
+        "gamma": [
+          "653/1000",
+          "82/125"
+        ],
+        "S": [
+          "217/200",
+          "136/125"
+        ],
+        "Z": [
+          "131/200",
+          "329/500"
+        ],
+        "R": [
+          "989/125",
+          "1583/200"
+        ]
+      },
+      "sturm_count_in_0_1": 1
+    }
+  ]
+}

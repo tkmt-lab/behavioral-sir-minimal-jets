@@ -1,0 +1,65 @@
+{
+  "status": "PASS",
+  "symbolic_identities": [
+    {
+      "p": 2,
+      "q": 1,
+      "unpowered_relation": true,
+      "powered_relation": true,
+      "state_recovery": true,
+      "normalized_coefficient": true,
+      "recovery_coefficients": true,
+      "output_monomials": 8
+    },
+    {
+      "p": 3,
+      "q": 1,
+      "unpowered_relation": true,
+      "powered_relation": true,
+      "state_recovery": true,
+      "normalized_coefficient": true,
+      "recovery_coefficients": true,
+      "output_monomials": 11
+    },
+    {
+      "p": 5,
+      "q": 2,
+      "unpowered_relation": true,
+      "powered_relation": true,
+      "state_recovery": true,
+      "normalized_coefficient": true,
+      "recovery_coefficients": true,
+      "output_monomials": 32
+    }
+  ],
+  "printed_root_intervals": [
+    {
+      "k": "2",
+      "printed_interval": [
+        "0.4933991454315",
+        "0.4933991454318"
+      ],
+      "unique_root": true,
+      "sealed_interval_strictly_inside": true
+    },
+    {
+      "k": "3",
+      "printed_interval": [
+        "0.4654318384721",
+        "0.4654318384724"
+      ],
+      "unique_root": true,
+      "sealed_interval_strictly_inside": true
+    },
+    {
+      "k": "5/2",
+      "printed_interval": [
+        "0.4791575947686",
+        "0.4791575947689"
+      ],
+      "unique_root": true,
+      "sealed_interval_strictly_inside": true
+    }
+  ],
+  "scope": "Exact polynomial identities and Sturm counts; general field arguments are prose proofs"
+}

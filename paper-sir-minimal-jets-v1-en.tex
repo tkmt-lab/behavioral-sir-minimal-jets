@@ -1,0 +1,662 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[margin=25mm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,booktabs,mathtools}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype}
+\setlength{\parskip}{4pt}
+\setlength{\emergencystretch}{2em}
+\renewcommand{\arraystretch}{1.12}
+\usepackage[hidelinks]{hyperref}
+\usepackage{xurl}
+\newtheorem{theorem}{Theorem}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newcommand{\C}{\mathbb C}
+\newcommand{\R}{\mathbb R}
+\newcommand{\dd}{\mathrm d}
+\input{certificate-tables.tex}
+\title{Minimal jet orders in a positive behavioral SIR model}
+\author{Tatsuhiko Takimoto\\\small Independent researcher}
+\date{Version 1.0, 10 November 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+For the behavioral SIR model with transmission rate
+$\beta SI/(1+\alpha I)^k$, we determine the least order of an exact
+output jet at one time that identifies the rates and hidden initial
+states, on the positive real domain with known total population.
+For each fixed, known $k\in\{2,3,5/2\}$, generic local identification
+requires order four, whereas generic identification against all positive
+competitors requires order five, in the sense of identification on an
+open dense set of true points. Fourth-order ambiguity is established
+on a nonempty open set, without a density claim. The fifth-order upper bound is an
+application of the observation-field theorem of Demin, Pogudin and
+Rackauckas and a prior identifiability result for this model. To prove
+that four derivatives do not suffice globally, we give exact certificates
+for two distinct positive points with the same fourth-order jet and
+nonzero jet Jacobians at both points. The inverse function theorem
+extends this ambiguity to a nonempty open set. The certificates have
+rational isolating intervals and can be checked using Python's standard
+library. The result concerns exact derivatives, not estimation from
+noisy samples.
+\end{abstract}
+
+\section{Model and the least-order question}
+\label{sec:model}
+Consider
+\begin{equation}
+S'=-\frac{\beta SI}{(1+\alpha I)^k},\qquad
+I'=\frac{\beta SI}{(1+\alpha I)^k}-\gamma I,\qquad
+R'=\gamma I,\qquad y=I.
+\label{eq:model}
+\end{equation}
+Fix known $k$ and $N_0>0$. The unknown initial point lies in
+\[
+\Omega_{N_0}=\{(\alpha,\beta,\gamma,S_0,I_0)\in\R_{>0}^5:
+S_0+I_0<N_0\},\qquad R_0=N_0-S_0-I_0.
+\]
+All powers use the positive real branch. Solutions are analytic near
+zero. Since the system is autonomous, the observation time can be
+translated to zero. Write
+\begin{equation}
+J_m(\theta)=(I(0),I'(0),\ldots,I^{(m)}(0)).
+\label{eq:jet}
+\end{equation}
+Order $m$ means $m+1$ observed numbers, including the zeroth derivative.
+
+\begin{definition}
+\label{def:minimal}
+The jet $J_m$ identifies a point $\theta$ locally if there is a
+neighborhood $V$ of $\theta$ in $\Omega_{N_0}$ such that
+$J_m^{-1}(J_m(\theta))\cap V=\{\theta\}$. It identifies $\theta$
+globally if this equality holds with $V=\Omega_{N_0}$.
+Generic local or global identifiability means that the corresponding
+property holds at every point of an open dense subset of $\Omega_{N_0}$
+in the Euclidean topology. In the global definition all competing points
+have the same known $k,N_0$, and are not restricted to the generic subset.
+\end{definition}
+
+\begin{theorem}
+\label{thm:main}
+For each fixed, known $k\in\{2,3,5/2\}$ and each known $N_0>0$,
+the least jet order for generic local identifiability of
+$\alpha,\beta,\gamma,S_0,I_0,R_0$ in~\eqref{eq:model} is four.
+The least jet order for generic global identifiability against all
+positive competitors is five: $J_4$ contains five observed numbers,
+whereas $J_5$ contains six. Moreover, for each of these exponents
+there is a nonempty open subset of $\Omega_{N_0}$ whose points have
+distinct positive competitors with the same $J_4$.
+\end{theorem}
+Here $R_0=N_0-S_0-I_0$ is a dependent quantity, so the unknown
+parameter-state domain has dimension five.
+
+Pant, Saucedo and Pogudin studied this behavioral model and its
+identifiability in~\cite[Section 3.6 and Supplement S9]{PSP,PSPsupp}.
+Their supplement provides the auxiliary state
+$Z=(1+\alpha I)^k/\beta$. A companion proof~\cite{Companion}
+establishes generic identifiability from the complete analytic output
+for every fixed known real $k\geq2$. This does not specify the least
+finite jet order.
+
+The observation-field results of Demin, Pogudin and Rackauckas
+\cite[Theorem 4.12 and Remark 4.18]{DPR} supply the upper bound used
+here. Finite-jet reduction and local rank methods are established tools;
+related identifiability theory appears in~\cite{HOPY,OPT}. The contribution
+of this note is the positive fourth-order ambiguity at two regular
+points for three exponents, which makes the known upper bound sharp.
+An input--output equation of order two still contains unknown
+coefficients, so its order is not the number of derivatives needed to
+recover those coefficients and the initial state at one time.
+
+\paragraph{Assurance.}
+The proof combines cited mathematical results, the inverse function
+and constant rank theorems, and finite exact certificate checks.
+Separately written checks support the certificate identities and their
+positivity. This is a prose and computer-assisted proof; it has not been
+formalized in a proof assistant or reviewed by human experts. The
+verification scope and software comparisons are recorded in
+\texttt{VERIFICATION-RECORD.md}.
+
+\section{The fifth-order upper bound}
+\label{sec:upper}
+Write $k=p/q$ in lowest terms. The positive coordinate
+$z=(1+\alpha I)^{1/q}$ gives the rational two-state model
+\begin{equation}
+S'=-\frac{\beta S(z^q-1)}{\alpha z^p},\qquad
+z'=\frac{z^q-1}{qz^{q-1}}
+       \left(\frac{\beta S}{z^p}-\gamma\right),\qquad
+y=\frac{z^q-1}{\alpha}.
+\label{eq:cover}
+\end{equation}
+For $q=1$ ($k=2,3$), this is the original model in the coordinate
+$z=1+\alpha I$; no root is taken.
+It has two states and three unknown constant parameters. Over $\C$,
+let $\mathcal O$ denote its observation field, generated by the output
+and all its Lie derivatives. Apply~\cite[Theorem 4.12 and Remark 4.18]{DPR}
+with ground subfield $\mathcal E=\C$ and no external inputs. The
+states-plus-parameters bound is derivative order five, or the six
+observed numbers in $J_5$, hence
+\begin{equation}
+\mathcal O=\C(y,Dy,\ldots,D^5y).
+\label{eq:field}
+\end{equation}
+Unknown parameter functions are not supplied to $\mathcal E$ as if
+they were already observed.
+
+For completeness, the bound in this no-input setting also follows by
+a classical differential-field argument. Put
+$L=\C(\alpha,\beta,\gamma,S,z)$ and
+$F_j=\C(y,Dy,\ldots,D^jy)$. The output $y$ is transcendental over
+$\C$, and $D(F_j)\subset F_{j+1}$. Let $r\geq1$ be the first index
+for which $D^ry$ is algebraic over $F_{r-1}$. Such an $r\leq5$
+exists because $\operatorname{trdeg}(L/\C)=5$. If
+$G(T)\in F_{r-1}[T]$ is its minimal polynomial, differentiating
+$G(D^ry)=0$ expresses $D^{r+1}y$ in $F_r$: the derivatives of the
+coefficients lie in $F_r$, and the separant
+$G'(D^ry)\ne0$ in characteristic zero. Hence $D(F_r)\subset F_r$
+and all later derivatives lie in $F_r$. Thus
+$\mathcal O=F_r=F_5$, proving~\eqref{eq:field} without an additional
+finite-generation hypothesis. This explains the cited bound in the
+present setting; it is not a new upper-bound result.
+
+The following is the precise cover statement needed here.
+\begin{lemma}[Observable quantities on the cover]
+\label{lem:observable}
+For $(p,q)=(2,1),(3,1),(5,2)$, equip
+$L=K(S,z)$, $K=\C(\alpha,\beta,\gamma)$, with the derivation
+in~\eqref{eq:cover}, where the five coordinates are algebraically
+independent and $D|_K=0$. Its rational constant field is exactly
+$\ker D=K$, and $\alpha,\gamma,\beta^q,S,y$ belong to its
+observation field $\mathcal O$ over $\C$.
+\end{lemma}
+The constant-field assertion is the absence of rational first
+integrals beyond the parameters, required by
+\cite[Theorem 4.7]{OPT}. In the fixed companion version,
+Lemma 3 (Section 2) checks that hypothesis; Lemma 4 and Proposition 5
+(Section 3) give the minimal normalized input--output equation;
+Proposition 6 (Section 4), equations (11)--(13), recovers
+$\alpha,\gamma,\beta^q$ from its coefficients. Section 5,
+equation (16), recovers $S$. Theorem 2 of that work is the resulting
+positive-domain statement; that statement alone is not being used
+as a substitute for membership in $\mathcal O$.
+Appendix~\ref{app:observable} proves the lemma here, including direct
+Wronskian recovery of the coefficients in $\mathcal O$. Thus the
+present proof does not need to infer observability from
+input--output identifiability via~\cite[Corollary 5.7]{OPT}.
+Consequently
+\begin{equation}
+\alpha,\gamma,\beta^q,S,y\ \in\mathcal O.
+\label{eq:observable}
+\end{equation}
+In particular, for $q=1$ the coefficient formulas recover $\beta$;
+for $q=2$ they recover $\beta^2$, not a choice between its complex
+square roots. This distinction is retained when using~\eqref{eq:field}.
+Positivity is essential to the subsequent global conclusion; no such
+conclusion for arbitrary complex or signed parameters is asserted.
+
+\begin{proposition}
+\label{prop:upper}
+For the three exponents of Theorem~\ref{thm:main}, $J_5$ identifies
+a generic true point against every positive competitor at the same
+$k,N_0$.
+\end{proposition}
+\begin{proof}
+For each of the five quantities $h$ in~\eqref{eq:observable},
+choose a rational representation
+$h=A_h(J_5)/B_h(J_5)$ provided by~\eqref{eq:field}.
+The pullback of each denominator is nonzero as a rational function.
+Let $B$ be their product, and restrict the true point to $B(J_5)\ne0$.
+After clearing model denominators, the equalities
+$hB_h(J_5)=A_h(J_5)$ are rational identities on the cover.
+
+A positive competitor with the same $J_5$ has exactly the same
+nonzero denominator values. The model denominators are also nonzero
+there: $\alpha>0$ and $z>1$. Thus the same identities recover
+$\alpha,\gamma,\beta^q,S_0,I_0$ at the competitor. Positivity gives a
+unique $q$th root $\beta$, and $R_0=N_0-S_0-I_0$ then agrees.
+
+The positive cover with
+$S_0+(z_0^q-1)/\alpha<N_0$ is a nonempty real open subset of the
+five-dimensional parameter-state space. A nonzero polynomial cannot
+vanish on any such open subset. Therefore the nonvanishing condition
+is open dense for every $N_0>0$. The positive root substitution is an
+analytic diffeomorphism, so its inverse image is open dense in
+$\Omega_{N_0}$. No genericity restriction was imposed on the competitor.
+\end{proof}
+This argument proves the existence of finite rational recovery
+expressions on the cover. It does not require their full expansion.
+The upper bound is an application of the cited theory, rather than a
+new finite-generation theorem.
+
+\section{Exact positive pairs with the same fourth-order jet}
+\label{sec:certificates}
+It is convenient to use $h=1/Z=\beta/(1+\alpha I)^k$.
+The coordinates
+\[
+(\alpha,\beta,\gamma,S_0,I_0)\longleftrightarrow
+(\alpha,\gamma,S_0,y_0,h_0)
+\]
+are analytically invertible on the positive domain, with inverse
+$\beta=h_0(1+\alpha y_0)^k$. The rational vector field becomes
+\begin{equation}
+S'=-Syh,\qquad y'=Syh-\gamma y,\qquad
+h'=-\frac{k\alpha h y'}{1+\alpha y},\qquad
+\alpha'=\gamma'=0.
+\label{eq:hmodel}
+\end{equation}
+Thus every finite jet and its Jacobian is rational in these coordinates
+for fixed $k$. All Jacobians below use the coordinate order
+$(\alpha,\gamma,S_0,y_0,h_0)$.
+
+Put $y=y_0$, $v=I'(0)$, $w=I''(0)$, and define
+\begin{equation}
+\rho=\frac{\alpha}{1+\alpha y},\qquad
+r=v+\gamma y,\qquad F=yw-v^2+k\rho vyr.
+\label{eq:F}
+\end{equation}
+Differentiating $r=Syh$ in~\eqref{eq:hmodel} gives
+$F=-y^2rh$. Consequently a positive candidate can be reconstructed as
+\begin{equation}
+\alpha=\frac{\rho}{1-\rho y},\qquad
+h=-\frac{F}{y^2r},\qquad S=-\frac{yr^2}{F},\qquad
+\beta=h(1+\alpha y)^k.
+\label{eq:reconstruct}
+\end{equation}
+The conditions are
+$0<\rho<1/y$, $\gamma>0$, $r>0$, $F<0$, and $S+y<N_0$.
+Here $\rho$ is a continuous coordinate, unrelated to the integer
+$q$ in~\eqref{eq:cover}.
+
+For $N_0=10$, take the true point
+\begin{equation}
+(\alpha,\gamma,S_0,y_0,h_0)=(1,1,2,1,1),
+\qquad \beta=2^k,\quad R_0=7.
+\label{eq:true}
+\end{equation}
+In every case $I(0)=I'(0)=1$. The remaining fourth-order data and the
+true-point determinant are:
+\begin{center}
+\begin{tabular}{@{}ccccc@{}}
+\toprule
+$k$ & $I''(0)$ & $I'''(0)$ & $I^{(4)}(0)$ & $\det DJ_4$ \\
+\midrule
+\MainJetRows
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{lemma}[Exact certificate]
+\label{lem:certificate}
+For each exponent in Theorem~\ref{thm:main}, there is a distinct
+positive point at $N_0=10$ with the same $J_4$ as~\eqref{eq:true}.
+Both $5\times5$ Jacobians $DJ_4$ are nonsingular. Their fifth output
+derivatives differ.
+\end{lemma}
+\begin{proof}[Certificate and verification]
+Let $f_k$ and $g_k$ be the rational polynomials in
+Appendix~\ref{app:data}. Define $\rho_*$ to be the unique real root
+of $f_k$ in the displayed $\rho_*$ interval below. Set
+$\gamma_*=g_k(\rho_*)$, use $y=v=1$ and the displayed $w$ in
+\eqref{eq:F}, and apply~\eqref{eq:reconstruct} to define the second
+point. Its removed state is $R_*=9-S_*$. The following are
+outward enclosures of the stored exact rational bounds; each decimal
+endpoint is itself a rational number.
+\begin{center}
+\small
+\begin{tabular}{@{}cccc@{}}
+\toprule
+$k$ & $\rho_*$ & $\det DJ_4(\theta_*)$ & $I_*^{(5)}(0)-I^{(5)}(0)$ \\
+\midrule
+\MainBoundRows
+\bottomrule
+\end{tabular}
+\end{center}
+
+The certificate checker performs these finite exact operations.
+Sturm's algorithm counts one root in each displayed interval
+(and in its narrower stored interval) and exactly
+one root of each $f_k$ in $(0,1)$. The isolating interval excludes
+$1/2$. Arithmetic modulo $f_k$
+constructs~\eqref{eq:reconstruct}; every inverse used is checked by the
+Euclidean algorithm. Rational interval evaluation gives positive lower
+bounds for $\alpha_*,\gamma_*,S_*,Z_*=1/h_*,R_*$. In particular the
+second point is admissible and distinct from~\eqref{eq:true}.
+The coordinate enclosures make this second branch explicit:
+\begin{center}
+\small
+\begin{tabular}{@{}cccccc@{}}
+\toprule
+$k$ & $\alpha_*$ & $\gamma_*$ & $S_*$ & $Z_*$ & $R_*$ \\
+\midrule
+\MainCoordinateRows
+\bottomrule
+\end{tabular}
+\end{center}
+Here $I_*=1$ in all three rows, while the true coordinates
+$(\alpha,\gamma,S,Z,R)$ are $(1,1,2,1,7)$.
+
+Taylor integration of~\eqref{eq:hmodel} through order five, using
+ordinary rational coefficients and factorial conversion, gives zero
+remainders modulo $f_k$ for all five components of
+$J_4(\theta_*)-J_4(\theta)$. Differentiating the same recurrence with
+respect to the five initial coordinates gives both Jacobian matrices.
+The true determinants are the displayed nonzero rationals. The
+alternate determinants and the fifth-derivative differences are
+coprime to $f_k$; their interval enclosures also exclude zero.
+These computations establish the stated identities and inequalities
+at the selected real roots. They do not require trusting a numerical
+root finder or a computed Gr\"obner basis.
+
+The data are in \texttt{producer/output/certificate.json}.
+Two separately written standard-library checkers use different ODE
+coordinates and determinant calculations and agree on the polynomial
+remainders. The exact reduced polynomials and interval bounds are
+included with the article, so the finite calculation can be repeated.
+From the packet directory run \texttt{python3 -B verify.py}; it
+replays \texttt{independent/check\_source\_certificate.py} and
+\texttt{producer/verify\_certificate.py} with exact arithmetic.
+\end{proof}
+
+One route to the candidates is to differentiate
+$Z=-y^2r/F$, noting $D\rho=-\rho^2v$. This gives
+\begin{equation}
+H=yr\,DF-F\{2vr+y(w+\gamma v)-k\rho vyr\}=0.
+\label{eq:H}
+\end{equation}
+For a fourth-order candidate, $H=DH=0$. The coefficient of $I'''$
+in $H$, and of $I^{(4)}$ in $DH$, is $y^2r>0$.
+For the data in~\eqref{eq:true}, elimination of these two equations
+produces a polynomial in $\rho$ containing the known true-point factor
+$2\rho-1$. Removing that factor leaves the quartic $f_k$, which
+therefore does not include the true point $\rho=1/2$.
+The certificate proof above checks the remaining candidate directly
+in the original ODE.
+It does not use a complete count of all positive candidates.
+
+\section{From regular pairs to least orders}
+\label{sec:minimal}
+\begin{lemma}
+\label{lem:two-branches}
+Let $\Phi:U\to\R^d$ be a continuously differentiable map on an open
+set $U\subset\R^d$. Suppose distinct points $a,b\in U$ have the same
+image and both $D\Phi(a)$ and $D\Phi(b)$ are nonsingular. Then a
+nonempty open subset of $U$ consists of points with a distinct
+competitor under $\Phi$.
+\end{lemma}
+\begin{proof}
+Take disjoint neighborhoods of $a$ and $b$ on which $\Phi$ is a
+diffeomorphism onto open sets. Those two images contain the common
+value $\Phi(a)=\Phi(b)$, so their intersection is nonempty and open.
+Its inverse image in the first neighborhood is nonempty and open,
+and every point there has another inverse image in the second.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+First take $N_0=10$. The nonzero true determinant in
+Lemma~\ref{lem:certificate} shows that the rational function
+$\det DJ_4$ is not identically zero. Its nonvanishing set is open
+dense in the positive coordinate domain. The inverse function theorem
+gives local identifiability there.
+
+For $m\leq3$, $J_m$ maps a five-dimensional open set to dimension
+$m+1\leq4$. The maximum-rank locus is open dense: the jet map is
+rational in the coordinates of~\eqref{eq:hmodel}, so a nonzero
+maximal minor has a zero set with empty interior. The constant rank
+theorem gives a positive-dimensional local fiber at every point of
+that locus. Such a fiber contains other positive admissible points.
+Thus no open dense set can be locally identifiable for $m\leq3$,
+and the least generic local order is four.
+
+Apply Lemma~\ref{lem:two-branches} to $\Phi=J_4$ and the two points
+of Lemma~\ref{lem:certificate}. The resulting open set of ambiguous
+true points prevents any open dense set from satisfying global
+identifiability at order four. Lower orders cannot distinguish points
+that already share $J_4$. Proposition~\ref{prop:upper} supplies the
+order-five upper bound.
+
+Finally let $c=N_0/10>0$. The scaling
+\begin{equation}
+(S,I,R,Z)\mapsto(cS,cI,cR,cZ),\qquad
+(\alpha,\beta,\gamma)\mapsto(\alpha/c,\beta/c,\gamma)
+\label{eq:scale}
+\end{equation}
+preserves~\eqref{eq:model}, multiplies every output derivative by $c$,
+and is an analytic diffeomorphism between the two positive parameter
+domains. It takes the pair above into $\Omega_{N_0}$, preserving
+jet equality and nonsingularity at both points. The same local and
+global lower-bound arguments therefore apply for every $N_0>0$.
+\end{proof}
+The conclusion at order four is an open set of ambiguity. It is not
+a claim that every positive point is ambiguous or that every fiber
+has exactly two points.
+
+\section{Additional certificates and scope}
+\label{sec:scope}
+A separate interval calculation uses the polynomial coordinates
+\[
+\rho=\frac{\alpha}{1+\alpha y},\quad b=\frac{\beta}{(1+\alpha y)^k},
+\quad s=Sb,\quad g=\gamma,
+\]
+with equations
+\begin{equation}
+\begin{aligned}
+y'&=y(s-g),&s'&=-syb-k\rho s y',\\
+b'&=-k\rho b y',&\rho'&=-\rho^2y',&g'&=0.
+\end{aligned}
+\label{eq:polynomial}
+\end{equation}
+After fixing $y,v,w$, one recovers
+$g=s-v/y$ and
+$b=-(w/y-v^2/y^2)/(sy)-k\rho v/y$.
+Thus the remaining two unknowns $(\rho,s)$ map to
+$(I''',I^{(4)})$. On the positive domain the change between
+$(\alpha,\gamma,S,y,h)$ and $(y,v,w,\rho,s)$ is invertible,
+so nonsingularity of this reduced $2\times2$ Jacobian is equivalent
+to nonsingularity of the full $DJ_4$.
+
+The separate supplementary records give interval certificates for
+$k=7/2$ and $k=1+\sqrt2$, including the changed true point
+$(\alpha,\gamma,S_0,I_0,Z_0,N_0)=(2/3,1,2,1,1,10)$.
+The alternate $(\rho,s)$ centers are approximately
+$(0.3707239149,1.5505151892)$ and
+$(0.3930391625,1.8392705345)$, respectively. The certified
+fifth-derivative differences lie in $(-9.752,-9.750)$ and
+$(-0.954,-0.952)$. These decimal intervals are outward rational
+enclosures, not numerical evidence by themselves.
+
+Let $\mathcal F(\rho,s)$ be the two residuals between the candidate's
+third and fourth derivatives and those of the true point. For a rational
+box $B$ and its center $a$, the checker forms an invertible rational
+preconditioner $C$ and bounds
+\[
+K(B)=a-C\mathcal F(a)+(\mathrm{Id}-C\mathcal F^{\prime}(B))(B-a).
+\]
+It verifies $K(B)\subset\operatorname{int}B$ and
+$\|\mathrm{Id}-C\mathcal F^{\prime}(B)\|_\infty<1$. The contraction mapping theorem supplies
+a unique zero, while interval bounds give positivity, nonsingularity
+at both branches, and a nonzero fifth-derivative difference.
+For $1+\sqrt2$ the calculation is uniform over a rational interval
+whose squared shifted endpoints straddle $2$. The irrational
+exponent is not replaced by one rational approximation.
+The exact boxes, exponent intervals and rational preconditioners are
+stored under each exponent key in
+\texttt{independent/stage1-certified-pairs.json} and
+\texttt{independent/extra-pairs.json}; the latter contains the changed
+initial point. The fields \texttt{root\_box\_p\_q},
+\texttt{k\_interval} and \texttt{preconditioner} specify these inputs
+(the historical $p,q$ there mean $\rho,s$, not the cover integers).
+Run \texttt{python3 -B verify\_intervals.py} to reproduce the seven
+stored inclusions and bounds. These supplementary assertions depend
+on those separate interval records; the three printed algebraic
+certificates suffice for Theorem~\ref{thm:main}.
+
+These additional records corroborate the fourth-order ambiguity
+mechanism; the main theorem remains restricted to $2,3,5/2$.
+The packet does not classify all exponents or all exceptional points,
+and it does not supply an expanded global inverse for $J_5$.
+Unknown $k$, unknown $N_0$, numerical stability and estimating
+derivatives from noisy observations are outside the result.
+Nonsingular jet Jacobians give local inverses; they do not bound
+their condition numbers or guarantee stable estimation.
+
+\paragraph{AI-use statement.}
+AI systems assisted with the proof development, separate checks,
+exact computations, literature comparison and manuscript drafting.
+The author is responsible for the mathematical claims and their
+stated scope; AI systems are not authors.
+
+\appendix
+\section{Polynomials defining the three main certificates}
+\label{app:data}
+The alternate point is defined by the unique real root $\rho_*$ of
+$f_k$ in the displayed interval of Section~\ref{sec:certificates},
+and by $\gamma_*=g_k(\rho_*)$. The narrower JSON intervals are
+additional implementation data, not part of this definition.
+The expressions below are obtained by reducing the recorded
+$\gamma$ polynomial modulo $f_k$, without changing its value at a root.
+\CertificatePolynomials
+
+\section{A proof of cover observability for the three exponents}
+\label{app:observable}
+We prove Lemma~\ref{lem:observable}. This is the rational argument of
+\cite[Sections 2--5]{Companion}, with a direct coefficient-recovery
+step to make the observation-field assertion explicit.
+
+\paragraph{Rational constants.}
+The derivation $E=(z^p/y)D$ has the same constants and satisfies
+\[
+E=-\beta S\partial_S+
+ \left(\frac{\alpha\beta}{q}Sz^{1-q}
+       -\frac{\alpha\gamma}{q}z^{p-q+1}\right)\partial_z.
+\]
+For a nonzero constant $f\in K(z)(S)$, expand
+$f=\sum_{n\geq m}f_n(z)S^n$ in $K(z)((S))$, with $f_m\ne0$.
+The derivation preserves $S$-order, so its lowest coefficient gives
+$-\beta m f_m-(\alpha\gamma/q)z^{p-q+1}f'_m=0$.
+If $m\ne0$, then $f'_m/f_m$ would have a pole of order
+$p-q+1\geq2$ at zero. A rational logarithmic derivative has at
+most a simple pole there. Hence $m=0$ and $f_0\in K$.
+If $f-f_0$ were nonzero, the same argument would contradict its
+positive $S$-order. Thus $\ker D=K$. This verifies the rational
+first-integral hypothesis without a numerical test.
+
+\paragraph{The minimal output relation.}
+Put $u=1+\alpha y$, $v=Dy$, $w=D^2y$ and
+\[
+A=yu w-\{1-(k-1)\alpha y\}v^2+k\alpha\gamma y^2v.
+\]
+Eliminating $S$ from $v+\gamma y=\beta Sy/z^p$ and
+$DS=-(v+\gamma y)$, by differentiating the former identity, gives
+\begin{equation}
+z^{p-q}A=-\beta y^2(v+\gamma y),\qquad
+Q=u^{p-q}A^q-(-\beta)^q y^{2q}(v+\gamma y)^q=0.
+\label{eq:appQ}
+\end{equation}
+Here $K(S,z)=K(v,z)$, with $v,z$ independent; thus $y,v$ are
+independent. Over $F=K(y,v)$, $T^q-u$ is Eisenstein at $u$
+in $K(v)[u][T]$ (or linear for $q=1$).
+The expression for $w$ in~\eqref{eq:appQ} is an element of $F$
+plus a nonzero element of $F$ times $z^{-(p-q)}$.
+Since $\gcd(p-q,q)=1$, its $q$ conjugates are distinct.
+Therefore $Q$ has minimal degree $q$ in $w$ and is irreducible
+over $F$. Its leading coefficient in $w$ is $y^q u^p$;
+the only possible content factors in $K[y,v][w]$ are $y,u$.
+But $Q(0,v,w)=(-1)^qv^{2q}$ and
+$Q(-1/\alpha,v,w)=-(-\beta)^q\alpha^{-2q}(v-\gamma/\alpha)^q$
+are nonzero. Hence $Q$ is primitive and irreducible in $K[y,v,w]$.
+The kernel of evaluation $K[y,v,w]\to L$ is exactly $(Q)$:
+division over $F$ and primitivity give this assertion.
+The monomial coefficient $[y^qw^q]Q$ is one.
+
+\paragraph{Coefficients are in the observation field.}
+Let $m_0=y^qw^q,m_1,\ldots,m_n$ be the monomial support of $Q$
+over $K$, evaluated in $L$, and write $Q=m_0+\sum_{j=1}^n c_jm_j$.
+A $K$-linear relation among these evaluations lies in $(Q)$.
+Its total degree is at most $\deg Q$, so it is a scalar multiple
+of $Q$. In particular $m_1,\ldots,m_n$ are independent over $K$.
+Since $\ker D=K$, the characteristic-zero Wronskian criterion gives
+$W=\det(D^im_j)_{0\leq i<n,\,1\leq j\leq n}\ne0$ in $L$.
+For clarity, the criterion follows by induction: divide by a nonzero
+first element and use
+$W(f_1,\ldots,f_n)=f_1^nW(1,f_2/f_1,\ldots,f_n/f_1)$;
+expansion along the first column reduces to the derivatives of the
+ratios. A constant relation among those derivatives integrates to
+a constant relation among the original elements. The converse is
+obtained by differentiating a constant relation.
+
+Differentiate $Q=0$ for $i=0,\ldots,n-1$. Since $Dc_j=0$,
+the invertible system
+$\sum_j(D^im_j)c_j=-D^im_0$ expresses each $c_j$ as a rational
+function of output derivatives. Thus every coefficient of $Q$
+belongs to $\mathcal O$. This is a field identity, not merely
+equality of identifiable values on positive real solutions.
+Although this construction uses derivatives of possibly high order,
+\eqref{eq:field} subsequently places the same quantities in $F_5$;
+there is no assumed fifth-order inverse in this argument.
+
+\paragraph{Parameter and state recovery.}
+For $q=1$ and $p=2,3$, expansion of~\eqref{eq:appQ} gives
+\[
+[y^2w]Q=p\alpha,\quad
+[y^3v]Q=p(p-1)\alpha^2\gamma,\quad
+[y^2v]Q=\beta+p\alpha\gamma.
+\]
+These recover $\alpha,\gamma,\beta$ successively in $\mathcal O$.
+For $(p,q)=(5,2)$, the needed coefficients are
+\[
+[y^3w^2]Q=5\alpha,\quad
+[y^3vw]Q=5\alpha\gamma,\quad
+[y^6]Q=-\beta^2\gamma^2.
+\]
+They recover $\alpha,\gamma,\beta^2$ in $\mathcal O$.
+All divisions are by nonzero elements of the rational function field.
+Finally~\eqref{eq:appQ} and $v+\gamma y=\beta Sy/z^p$ imply
+\begin{equation}
+S=-\frac{yu(v+\gamma y)^2}{A}\in\mathcal O.
+\label{eq:appS}
+\end{equation}
+The denominator is not identically zero; along a positive solution
+$z^{p-q}A=-\beta^2Sy^3/z^p\ne0$. Also $y\in\mathcal O$ by
+definition. This completes the proof of the lemma.
+
+\clearpage
+\begin{thebibliography}{9}
+\bibitem{PSP}
+B. Pant, O. Saucedo and G. Pogudin,
+``Uncovering identifiability of epidemiological models: basic reproduction
+number and complementary data streams,'' medRxiv, version 2
+(25 January 2026), doi:\href{https://doi.org/10.64898/2026.01.16.26344284}{10.64898/2026.01.16.26344284}.
+\bibitem{PSPsupp}
+B. Pant, O. Saucedo and G. Pogudin,
+Supplementary material to~\cite{PSP}, version 2, Section S9,
+\url{https://www.medrxiv.org/content/medrxiv/early/2026/01/25/2026.01.16.26344284/DC1/embed/media-1.pdf}.
+\bibitem{DPR}
+A. Demin, G. Pogudin and C. Rackauckas,
+``Observable functions of rational ODE models and how to find them,''
+\href{https://arxiv.org/abs/2609.06134v3}{arXiv:2609.06134v3}
+(18 September 2026). The numbering used here is that version's.
+\bibitem{Companion}
+T. Takimoto,
+``Global identifiability of a behavioral SIR model for every fixed real
+saturation exponent $k\geq2$,'' article version 3.0
+(27 October 2026), publication display edition (10 November 2026),
+Lemma 3, Lemma 4, Propositions 5--6 and Section 5, equations (14)--(16).
+The display edition is included in the \texttt{companion/} directory
+of the accompanying packet. The TeX source has SHA-256
+\texttt{6689d03fc3aaeeb9741b60c4169c831e5ecb3b20eb1884a36baa09985d940d3b};
+the PDF has SHA-256
+\texttt{ab6e2378648e9da9972c19ec79ed9a32c9503bcf8b50f27020cf9d63011b4e14}.
+\bibitem{OPT}
+A. Ovchinnikov, G. Pogudin and P. Thompson,
+``Parameter identifiability and input--output equations,''
+\emph{Appl. Algebra Engrg. Comm. Comput.} \textbf{34}(2), 165--182 (2023),
+doi:10.1007/s00200-021-00486-8; arXiv:2007.14787v2.
+The theorem numbering used here is that of the cited arXiv version.
+\bibitem{HOPY}
+H. Hong, A. Ovchinnikov, G. Pogudin and C. Yap,
+``Global identifiability of differential models,''
+\emph{Comm. Pure Appl. Math.} \textbf{73}(9), 1831--1879 (2020),
+doi:10.1002/cpa.21921; arXiv:1801.08112v5.
+\end{thebibliography}
+\end{document}

@@ -1,0 +1,22 @@
+name: Packet verification
+on: [push, pull_request, workflow_dispatch]
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+      OMP_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Packet file list and hashes
+        run: python3 -B check_packet.py
+      - name: Exact standard-library certificate verification
+        run: python3 -B verify.py
+      - name: Unchanged checkout
+        run: test -z "$(git status --porcelain --untracked-files=all)"

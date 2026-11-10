@@ -1,0 +1,24 @@
+{
+  "packet_version": "1.0.0",
+  "article_version": "1.0",
+  "status": "release-edition",
+  "version_doi": null,
+  "main_exponents": [
+    "2",
+    "3",
+    "5/2"
+  ],
+  "companion": {
+    "article_version": "3.0",
+    "status": "publication-display-edition",
+    "version_doi": null,
+    "included_as": "fixed proof dependency",
+    "display_edition_date": "2026-11-10",
+    "source_article_date": "2026-10-27"
+  },
+  "release_date": "2026-11-10",
+  "repository_code": "https://github.com/tkmt-lab/behavioral-sir-minimal-jets",
+  "tag": "v1.0.0",
+  "verification_record": "VERIFICATION-RECORD.md",
+  "literature_review": "Completed bounded comparison of the positive fourth-order lower-bound certificates; no priority claim"
+}

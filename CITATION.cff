@@ -1,0 +1,33 @@
+{
+  "cff-version": "1.2.0",
+  "message": "Article 1.0 and certificate packet 1.0.0, release edition dated 10 November 2026. Please cite the article; code is Apache-2.0 and article/text/data are CC-BY-4.0.",
+  "title": "Minimal jet orders in a positive behavioral SIR model",
+  "type": "software",
+  "version": "1.0.0",
+  "authors": [
+    {
+      "family-names": "Takimoto",
+      "given-names": "Tatsuhiko",
+      "affiliation": "Independent researcher"
+    }
+  ],
+  "license": "Apache-2.0",
+  "preferred-citation": {
+    "type": "article",
+    "title": "Minimal jet orders in a positive behavioral SIR model",
+    "authors": [
+      {
+        "family-names": "Takimoto",
+        "given-names": "Tatsuhiko",
+        "affiliation": "Independent researcher"
+      }
+    ],
+    "version": "1.0",
+    "year": 2026,
+    "license": "CC-BY-4.0",
+    "date-released": "2026-11-10",
+    "url": "https://github.com/tkmt-lab/behavioral-sir-minimal-jets"
+  },
+  "date-released": "2026-11-10",
+  "repository-code": "https://github.com/tkmt-lab/behavioral-sir-minimal-jets"
+}

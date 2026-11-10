@@ -1,0 +1,783 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[margin=25mm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,booktabs,array}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype,xurl}
+\usepackage[hidelinks]{hyperref}
+\setlength{\parskip}{4pt}
+\setlength{\emergencystretch}{2em}
+\renewcommand{\arraystretch}{1.12}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{definition}\newtheorem{definition}[theorem]{Definition}
+\newcommand{\C}{\mathbb C}
+\newcommand{\coef}[1]{[#1]Q}
+\title{Global identifiability of a behavioral SIR model\newline
+for every fixed real saturation exponent $k\geq2$}
+\author{Tatsuhiko Takimoto\\\small Independent researcher}
+\date{Version 3.0, 27 October 2026\\Publication display edition, 10 November 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+We prove generic global structural identifiability of the positive real
+behavioral SIR model for each fixed, known real exponent $k\geq2$, from
+exact observation of the infectious population and the known initial
+total population. This proves a specified formulation of Conjecture~2
+of Pant, Saucedo and Pogudin: their conjecture sentence does not
+explicitly stipulate that the exponent is known or that the domain is
+positive, whereas these are assumptions of the theorem here.
+For every fixed exponent, an open dense set of true points is
+identified against all positive competing points at that same exponent.
+For rational $k=p/q$, a root substitution gives a two-state rational
+model whose minimal input--output equation has order two and degree
+$q$ in its highest derivative. For irrational $k$, the original
+supplement's auxiliary-state model has no rational constants beyond
+the parameter field. A primitive third-order equation and a finite
+Wronskian then identify the rates and hidden states. Both arguments
+exclude exceptional exponents throughout $k\geq2$.
+The proof is in prose. Separate exact computations check identities
+and finite cases. The exponent itself is not inferred, and no claim
+of stable estimation from noisy or discrete observations is made.
+\end{abstract}
+
+\section{Model, prior work and result}
+\label{sec:intro}
+Consider
+\begin{equation}
+S'=-\frac{\beta SI}{(1+\alpha I)^k},\qquad
+I'=\frac{\beta SI}{(1+\alpha I)^k}-\gamma I,\qquad
+R'=\gamma I,\qquad y=I.
+\label{eq:model}
+\end{equation}
+The exponent $k$ and the initial total population
+$N_0=S(0)+I(0)+R(0)>0$ are fixed and known. Parameters
+$\alpha,\beta,\gamma$ and initial states are positive. Powers use the
+positive real branch. The unknown quantities are the three parameters
+and the initial states; the state trajectories then follow by uniqueness
+of the analytic initial-value problem. Structural identifiability is
+an assertion about exact output germs, not numerical stability.
+
+Pant, Saucedo and Pogudin posed this question in Section~3.6 and
+Conjecture~2 of \cite{PSP}. Their Theorem~3.8 gives a two-fold
+ambiguity at $k=1$, while Supplement~S9 \cite{PSPsupp} reports global
+identifiability for $k=2,3,4,5,10,50$. Its Remark~1 already introduces
+\begin{equation}
+Z=\frac{(1+\alpha I)^k}{\beta}
+\label{eq:S9}
+\end{equation}
+and uses a computed identifiability result for the transformed model
+and the possible zeros of recovery denominators as functions of $k$.
+That argument has no integer restriction but specifies neither a
+threshold nor all exceptional exponents. The transformation itself
+is due to that supplement.
+
+Here the rational and irrational cases are proved separately, with
+no exceptional exponent in the stated range. This proves a specified formulation of Conjecture~2,
+with each real exponent fixed and known, on the
+positive real domain with known $N_0$; the original conjecture sentence
+does not explicitly give the first two restrictions. The domain choice
+is substantive: for non-integer rational $k=p/q$, the complex cover
+identifies $\beta$ only up to $q$ distinct values
+(Section~\ref{sec:identification}), whereas the positive branch selects
+one. The surrounding
+fixed-exponent examples motivate this formulation, but we do not infer
+from them a claim about the authors' intended treatment of unknown $k$.
+The integer theorem of \cite{V1} is included as a special case on the
+positive domain. The rational proof uses the identifiability results
+of Ovchinnikov, Pogudin and Thompson \cite{OPT} and the model-ideal
+framework of Hong, Ovchinnikov, Pogudin and Yap \cite{HOPY}.
+The irrational proof below gives a direct Wronskian argument for the
+comparison with every positive competitor.
+
+\begin{samepage}
+\begin{definition}
+\label{def:id}
+Fix $k$ and $N_0>0$. Let $\Omega_{N_0}$ be the open set of positive
+$(\alpha,\beta,\gamma,S_0,I_0)$ with $S_0+I_0<N_0$, and put
+$R_0=N_0-S_0-I_0$. A quantity is generically globally identifiable if
+there is an open dense set $U\subset\Omega_{N_0}$ such that, for each
+true point in $U$, every point of $\Omega_{N_0}$ producing the same
+analytic output germ at time zero has the same value of that quantity.
+The competing points need not belong to $U$.
+\end{definition}
+\end{samepage}
+
+\begin{theorem}
+\label{thm:main}
+For every fixed, known real $k\geq2$ and every fixed, known $N_0>0$,
+model~\eqref{eq:model} is generically globally identifiable in the
+sense of Definition~\ref{def:id}. Thus $\alpha,\beta,\gamma,S_0,I_0,R_0$
+are determined by $I(t)$ and $N_0$ at every true point of an open dense
+set $U_{k,N_0}\subset\Omega_{N_0}$, against all positive competitors
+at the same exponent and population. The set may depend on $k$ and $N_0$.
+\end{theorem}
+
+\paragraph{Present assurance.}
+The theorem has a prose proof and is not formalized in a proof assistant
+or reviewed by human experts. Separate AI proof checks and separately
+written exact computations supported the rational and irrational
+arguments, including their all-competitor quantifiers. The finite
+calculations in Section~\ref{sec:checks} check algebraic identities and
+specified examples; they are not the proof for all real exponents.
+This extract contains the article TeX and PDF. The companion
+\texttt{README.md} specifies its scope and distinguishes the original
+supplement and verification record from those of the minimal-jet packet.
+\section{A rational cover and its constants}
+\label{sec:cover}
+In this and the next three sections, write $k=p/q\geq2$ in lowest terms, with $p,q$ positive integers. Set $K=\C(\alpha,\beta,\gamma)$ and let $L=K(S,z)$, with $S,z$
+algebraically independent. Define the output and derivation by
+\begin{equation}
+y=\frac{z^q-1}{\alpha},\qquad
+DS=-\frac{\beta Sy}{z^p},\qquad
+Dz=\frac{\alpha}{q}z^{1-q}
+       \left(\frac{\beta Sy}{z^p}-\gamma y\right),\qquad D|_K=0.
+\label{eq:cover}
+\end{equation}
+This is a rational ODE with rational output. A common denominator is
+$\alpha qz^{p+q-1}$. On the positive real domain the changes of initial
+coordinates
+\[
+z=(1+\alpha I)^{1/q}>0,\qquad I=(z^q-1)/\alpha
+\]
+are analytic inverses, and $z^p=(1+\alpha I)^k$. Differentiation shows
+that they carry solutions in both directions. In particular, the cover
+does not add a free initial condition to the positive real model.
+The equation for $R$ can be removed, since $R=N_0-S-I$ and
+$D(N_0-S-I)=\gamma I$.
+
+\begin{lemma}
+\label{lem:constants}
+The field of constants of $(L,D)$ is exactly $K$.
+\end{lemma}
+\begin{proof}
+The derivation $E=(z^p/y)D$ has the same constants as $D$, and
+\begin{equation}
+ES=-\beta S,\qquad
+Ez=\frac{\alpha\beta}{q}Sz^{1-q}
+       -\frac{\alpha\gamma}{q}z^{p-q+1}.
+\label{eq:E}
+\end{equation}
+Equivalently,
+\[
+E=-\beta S\partial_S+
+\left(\frac{\alpha\beta}{q}Sz^{1-q}
+-\frac{\alpha\gamma}{q}z^{p-q+1}\right)\partial_z.
+\]
+For a nonzero $F\in K(z)(S)$ with $EF=0$, use the embedding in the
+formal Laurent series field $K(z)((S))$ and write
+$F=\sum_{n\geq m}f_n(z)S^n$, $f_m\ne0$. The derivation does not lower
+$S$-order, so it extends continuously to $K(z)((S))$; its term
+containing $S\partial_z$ raises that order by one.
+Thus the coefficient of $S^m$ in $EF$ gives
+\begin{equation}
+-\beta m f_m-\frac{\alpha\gamma}{q}z^{p-q+1}f'_m=0.
+\label{eq:leading}
+\end{equation}
+If $m\ne0$, then
+\[
+\frac{f'_m}{f_m}=-\frac{q\beta m}{\alpha\gamma}z^{-(p-q+1)}.
+\]
+The logarithmic derivative of a nonzero rational function has at most
+a simple pole at $z=0$: writing $f_m=z^r h$ with $h$ of valuation zero
+gives $f'_m/f_m=r/z+h'/h$. The right side has pole order
+$p-q+1\geq q+1\geq2$, a contradiction. Hence $m=0$ and
+\eqref{eq:leading} gives $f_0\in K$. If $F-f_0$ were nonzero, it would
+again be a constant with positive $S$-order, giving the same
+contradiction. Therefore $F=f_0\in K$.
+\end{proof}
+
+\section{Differential order two and highest-derivative degree \texorpdfstring{$q$}{q}}
+\label{sec:io}
+Put $u=1+\alpha y$, $v=Dy$ and $w=D^2y$, recalling $k=p/q$. Define
+\begin{equation}
+A=yu w-\bigl(1-(k-1)\alpha y\bigr)v^2+k\alpha\gamma y^2v.
+\label{eq:A}
+\end{equation}
+The symbol $A$ denotes this polynomial in output derivatives; it is
+not the auxiliary state $Z$ in~\eqref{eq:S9}.
+From the output equation and conservation we have
+\begin{equation}
+S=\frac{(v+\gamma y)z^p}{\beta y},\qquad DS=-(v+\gamma y).
+\label{eq:S}
+\end{equation}
+Differentiate the first expression and use $D(z^q)=\alpha v$ and the
+second expression. Multiplication by $\beta y^2$ gives
+\[
+(w+\gamma v)z^p y+k\alpha vy(v+\gamma y)z^{p-q}
+-(v+\gamma y)z^p v=-\beta y^2(v+\gamma y).
+\]
+Using $u-k\alpha y=1-(k-1)\alpha y$ and collecting terms gives
+\begin{equation}
+z^{p-q}A+\beta y^2(v+\gamma y)=0.
+\label{eq:unpowered}
+\end{equation}
+Raising this equality to the $q$th power yields
+\begin{equation}
+Q(y,v,w)=u^{p-q}A^q-(-\beta)^q y^{2q}(v+\gamma y)^q=0.
+\label{eq:Q}
+\end{equation}
+Keeping the factor $(-\beta)^q$ makes the sign correct for odd as well
+as even denominators.
+
+\begin{lemma}
+\label{lem:minimal}
+The elements $y,v$ are algebraically independent over $K$. The
+polynomial $Q$ is irreducible in $K[y,v,w]$ and has minimal degree
+$q$ in $w$ over $K(y,v)$.
+\end{lemma}
+\begin{proof}
+Equation~\eqref{eq:S} gives $K(S,z)=K(v,z)$, so $v,z$ are independent;
+then $y,v$ are independent as well. Write $F=K(y,v)$. The polynomial
+$T^q-u$ is Eisenstein at $u$ in $K(v)[u][T]$ (and is linear when
+$q=1$), hence $[F(z):F]=q$. Its conjugates are $z\mapsto\zeta z$ for
+$\zeta^q=1$, since $\C$ contains the roots of unity.
+Equation~\eqref{eq:unpowered} writes $w$ as an element of $F$ plus a
+nonzero element of $F$ times $z^{-(p-q)}$. Because
+$\gcd(p-q,q)=1$, its $q$ conjugates are distinct. Therefore $w$ has
+minimal degree $q$ and $Q$ is irreducible in $F[w]$.
+
+The leading coefficient of $Q$ as a polynomial in $w$ is $y^q u^p$.
+Its content in $K[y,v][w]$ can thus have only the factors $y$ or $u$.
+However,
+\begin{equation}
+Q(0,v,w)=(-1)^qv^{2q},\qquad
+Q(-1/\alpha,v,w)=-(-\beta)^q\alpha^{-2q}(v-\gamma/\alpha)^q
+\label{eq:content}
+\end{equation}
+are nonzero; the second equality uses $p-q>0$.
+Thus $Q$ is primitive, and Gauss's lemma proves irreducibility in
+$K[y,v,w]$.
+\end{proof}
+
+\begin{proposition}
+\label{prop:characteristic}
+For the ranking $y<y'<y''<\cdots$, the set $\{Q\}$ is a monic
+characteristic presentation of the output ideal of~\eqref{eq:cover}.
+\end{proposition}
+\begin{proof}
+The output ideal $J$ is the kernel of $K\{y\}\to L$ and is prime.
+This agrees with the output part of the rational-model ideal obtained
+by saturating by the common denominator: after localization, all
+state derivatives reduce to rational expressions in the independent
+states $S,z$. This is also the model-ideal setting of
+\cite[Lemma~3.2]{HOPY}.
+
+The leader of $Q$ is $y''$, with degree $q$. Lemma~\ref{lem:minimal}
+excludes any nonzero element of $J$ of lower rank. An autoreduced set
+in one differential indeterminate has at most one element; hence
+$\{Q\}$ is a characteristic set. Its initial $y^q u^p$ belongs to
+$K[y,v]$, the ring of non-leading variables. Separately, $Q$ itself
+has no nonconstant factor in $K[y,v]$, by primitivity.
+Finally $\coef{y^q w^q}=1$. These are the conditions in
+\cite[Definition~5.4]{OPT}. Here ``monic'' means that at least one
+monomial coefficient is one, not that the initial is one.
+\end{proof}
+
+\section{Coefficients and the integer special case}
+\label{sec:coefficients}
+\begin{proposition}
+\label{prop:coefficients}
+For $q\geq2$, the field generated over $\C$ by the coefficients of $Q$
+is $\C(\alpha,\gamma,\beta^q)$. For $q=1$ it is $K$.
+\end{proposition}
+\begin{proof}
+When $q\geq2$, direct expansion gives
+\begin{equation}
+\begin{aligned}
+\coef{y^qw^q}&=1,&\quad \coef{y^{q+1}w^q}&=p\alpha,\\
+\coef{y^{q+1}vw^{q-1}}&=p\alpha\gamma,&
+\coef{y^{3q}}&=(-1)^{q+1}\beta^q\gamma^q.
+\end{aligned}
+\label{eq:coeff}
+\end{equation}
+For the third coefficient, choose the $w$ term $q-1$ times and the
+$k\alpha\gamma y^2v$ term once from $A^q$, taking the least $y$ power
+in the remaining factors. Terms containing $v^2$ cannot contribute.
+The second summand of~\eqref{eq:Q} has no $w$, and $q-1>0$.
+Thus
+\begin{equation}
+\alpha=\frac{\coef{y^{q+1}w^q}}p,\quad
+\gamma=\frac{\coef{y^{q+1}vw^{q-1}}}{p\alpha},\quad
+\beta^q=\frac{(-1)^{q+1}\coef{y^{3q}}}{\gamma^q}.
+\label{eq:inverse}
+\end{equation}
+All coefficients lie in this field, so equality follows.
+
+If $q=1$, $k=p\geq2$ and $Q=u^{p-1}A+\beta y^2(v+\gamma y)$,
+which is the integer-exponent polynomial of \cite{V1}. In this case
+the $\beta$ term contributes to $\coef{y^2v}$, so one instead uses
+\begin{equation}
+\coef{yw}=1,\quad \coef{y^2w}=p\alpha,\quad
+\coef{y^3v}=p(p-1)\alpha^2\gamma,\quad
+\coef{y^2v}=\beta+p\alpha\gamma.
+\label{eq:integer}
+\end{equation}
+These recover $\alpha,\gamma,\beta$ successively. The integer factors
+in the denominators of~\eqref{eq:inverse} and~\eqref{eq:integer} never
+vanish in their respective ranges. The other divisions are legitimate
+at generic points and on the positive parameter domain.
+\end{proof}
+
+\section{One experiment and the positive branch}
+\label{sec:identification}
+By Proposition~\ref{prop:characteristic} and
+\cite[Corollary~5.7]{OPT}, the coefficient field is the field of
+input--output identifiable parameter functions. Lemma~\ref{lem:constants}
+verifies the hypothesis of \cite[Theorem~4.7]{OPT}, so it is also the
+field of functions identifiable from one experiment. In particular,
+$\alpha,\gamma,\beta^q$ are generically globally identifiable on the
+complex rational cover.
+
+The quantifiers here are those of \cite[Notation~2.1 and
+Definition~2.2]{OPT}, which extend the definition cited there from
+\cite{HOPY}. For this autonomous cover, let
+$\Omega_{\mathrm c}=\{(\alpha,\beta,\gamma,S_0,z_0):
+\alpha qz_0^{p+q-1}\ne0\}$. For each identifiable function $h$,
+the true point lies in a nonempty Zariski open set
+$\Theta\subset\Omega_{\mathrm c}$, while every competing point in
+$\Omega_{\mathrm c}$ where $h$ is defined and the output germ is the same
+must give the same value of $h$. Competitors are not restricted to
+$\Theta$. For $h=\alpha,\gamma,\beta^q$ these functions are defined
+everywhere, and we intersect their three Zariski open sets. This is
+the quantifier structure specialized to the positive branch in
+Definition~\ref{def:id}.
+
+For $q>1$, $\beta$ itself is not globally identifiable on that cover.
+For each $\zeta^q=1$, the transformation
+\begin{equation}
+(z,\beta,S,\alpha,\gamma)\longmapsto
+(\zeta z,\zeta^p\beta,S,\alpha,\gamma)
+\label{eq:symmetry}
+\end{equation}
+preserves the output and $DS$ and multiplies $Dz$ by $\zeta$.
+It therefore takes solutions to solutions. Coprimality gives $q$
+distinct generic values of $\beta$, and identifiability of $\beta^q$
+allows no more than $q$.
+
+\begin{proof}[Rational case of Theorem~\ref{thm:main}]
+Take a true point in the Zariski open set $\Theta$ just described for the complex-cover
+identifiability statement, and any positive real competing point with
+the same output. Both lift by~\eqref{eq:cover}. The global statement
+compares the true point with all admissible competitors, so
+$\alpha,\gamma,\beta^q$ agree. Their positive roots
+$z=(1+\alpha y)^{1/q}$ agree as well. The relation before taking
+powers gives
+\begin{equation}
+\beta=-\frac{z^{p-q}A}{y^2(v+\gamma y)}.
+\label{eq:beta}
+\end{equation}
+This recovers the same $\beta$ for both solutions. Its denominator is
+nonzero when $\beta Sy z\ne0$, since $v+\gamma y=\beta Sy/z^p$.
+For positive $\beta$ one could alternatively take the positive root
+of $\beta^q$; equation~\eqref{eq:beta} displays the role of the branch.
+
+Combining~\eqref{eq:S} with~\eqref{eq:unpowered} gives
+\begin{equation}
+S=-\frac{yu(v+\gamma y)^2}{A},\qquad I=y,\qquad R=N_0-S-I.
+\label{eq:states}
+\end{equation}
+The right sides coincide. In fact, along every positive solution,
+\eqref{eq:unpowered} gives
+$z^{p-q}A=-\beta^2Sy^3/z^p\ne0$. Thus both solutions have the same
+nonzero denominator, proving equality of all initial states.
+The rational expression for $S$ also gives its identifiability on the
+cover by \cite[Proposition~3.1]{OPT}.
+
+For each fixed $p,q$, intersect $\Theta$ with the
+nonvanishing sets of the displayed denominators. This is a nonempty
+Zariski open set, by the cited definition and finite intersection.
+The positive real cover with $S+I<N_0$ is a nonempty
+Euclidean open set in real coordinates. A nonzero complex polynomial
+cannot vanish on that whole open set, so the intersection is open and
+dense there. The analytic coordinate change in
+Section~\ref{sec:cover} transfers it to $\Omega_{N_0}$. This restricts
+the true point only; it does not restrict the competing points to a
+generic subset.
+\end{proof}
+
+For $q=1$, no root choice is needed. The same coefficient and state
+formulas recover the complex generic integer result of \cite{V1}.
+The new real-branch theorem therefore includes its positive real
+restriction and does not assert a contrary ambiguity for integers.
+
+
+\section{The irrational auxiliary-state field}
+\label{sec:irrational}
+Now fix an irrational real $k\geq2$, and use the state $Z$ of
+\eqref{eq:S9}. In this section and the next two, redefine
+$K=\C(\alpha,\gamma)$, in contrast to $K=\C(\alpha,\beta,\gamma)$
+in the rational case: $\beta$ is encoded by $Z(0)$, not included as an
+independent parameter of this field. Set $L=K(S,u,Z)$ with three
+algebraically independent states. The output
+and derivation are
+\begin{equation}
+\begin{aligned}
+y&=(u-1)/\alpha, & DS&=-Sy/Z,\\
+Du&=\alpha y(S/Z-\gamma), &
+DZ&=k\alpha y(S-\gamma Z)/u.
+\end{aligned}
+\label{eq:irrmodel}
+\end{equation}
+The parameter $\beta$ does not occur in the vector field: it is encoded
+by the initial value $Z(0)=u(0)^k/\beta$. This is the model of S9,
+with a changed name for its auxiliary state.
+
+\begin{lemma}
+\label{lem:irrconstants}
+For each fixed irrational $k\geq2$, the field of constants is
+$L^D:=\{H\in L:DH=0\}=K$.
+\end{lemma}
+\begin{proof}
+Rescale by the nonzero field element $Z/y$ and set $B=Z/u$. The
+derivation $E=(Z/y)D$ has the same constants and is
+\begin{equation}
+E=-S\partial_S-\alpha\gamma B X+
+ \alpha S\left(\partial_u+\frac{(k-1)B}{u}\partial_B\right),
+\qquad X=u\partial_u+(k-1)B\partial_B.
+\label{eq:irrE}
+\end{equation}
+It does not lower $S$-order and extends continuously to
+$K(u,B)((S))$. For a nonzero rational $H$ with $EH=0$, write
+$H=\sum_{n\geq m}h_n(u,B)S^n$, $h_m\ne0$. Its leading coefficient
+satisfies
+\[
+E_0h_m=mh_m,\qquad E_0=-\alpha\gamma B X.
+\]
+Expand $h_m=\sum_{j\geq n}g_j(u)B^j$ in $K(u)((B))$. Since
+\[
+E_0(g_jB^j)=-\alpha\gamma\bigl(ug'_j+(k-1)jg_j\bigr)B^{j+1},
+\]
+$E_0$ raises the lowest $B$-order by at least one. The equality is
+impossible for $m\ne0$. Thus $m=0$ and $Xh_0=0$.
+
+Write $h_0=P_0/Q_0$ with coprime polynomials in $K[u,B]$.
+The equality $Q_0XP_0=P_0XQ_0$ implies that $P_0$ divides $XP_0$
+and $Q_0$ divides $XQ_0$. Since $X$ does not increase total degree,
+$XP_0=cP_0$ and $XQ_0=cQ_0$ for the same $c\in K$.
+The weights $i+(k-1)j$ of distinct monomials $u^iB^j$ are distinct:
+a coincidence with different $j$ would make $k$ rational, and equal
+$j$ forces equal $i$. Each eigenpolynomial is therefore a monomial.
+The common eigenvalue gives the same exponents, so $h_0\in K$.
+If $H-h_0$ were nonzero, it would be an $E$-constant of positive
+$S$-order, contradicting the preceding argument. Hence $H\in K$.
+\end{proof}
+
+The irrationality is used only in the monomial weights. For rational
+$k=p/q$, the three-state field instead has the nonconstant rational
+first integral $u^p/Z^q$. This does not contradict
+Lemma~\ref{lem:constants}: on the two-state cover that expression is
+$\beta^q$, in the parameter field. For every real $k$, the positive
+model also has the analytic first integral $Z/u^k$. In the irrational
+case it is not rational. Indeed, a putative polynomial relation for
+$u^k$ over $\C(u)$ gives a finite linear combination of distinct powers
+$u^{i+kj}$; after $u=e^s$, a Vandermonde argument for exponentials
+forces every coefficient to vanish. The lemma concerns rational
+constants, not all analytic first integrals.
+
+\section{Third-order equation and coefficient recovery}
+\label{sec:irrIO}
+Use the jet variables $v=Dy$, $w=D^2y$ and $x=D^3y$.
+Retain the polynomial $A$ from~\eqref{eq:A}, now with the
+fixed irrational value of $k$, and put $r=v+\gamma y$ and $u=1+\alpha y$.
+The original equations give $S=Zr/y$, $DS=-r$ and $DZ/Z=k\alpha v/u$.
+Differentiating the first identity and multiplying by $y^2u$ gives
+\[
+Z\{k\alpha vyr+uy(w+\gamma v)-urv\}=-y^2ur.
+\]
+The expression in braces is $A$, so
+\begin{equation}
+ZA=-y^2ur,\qquad Z=-\frac{y^2ur}{A},\qquad
+S=-\frac{yur^2}{A},\qquad K(S,u,Z)=K(y,v,w).
+\label{eq:irrrecover}
+\end{equation}
+In particular $y,v,w$ are algebraically independent. Logarithmic
+differentiation of $Z$ yields
+\[
+\frac{DA}{A}=\frac{2v}{y}+\frac{w+\gamma v}{r}
+ -(k-1)\frac{\alpha v}{u}.
+\]
+Define
+\begin{equation}
+\begin{split}
+P={}&uyr\,(v\partial_yA+w\partial_vA+x\partial_wA)\\
+ &-A\{2uvr+uy(w+\gamma v)-(k-1)\alpha vyr\}.
+\end{split}
+\label{eq:irrP}
+\end{equation}
+It vanishes in $L$ and is linear in $x$, with
+\begin{equation}
+\partial_xP=y^2u^2r.
+\label{eq:irrinitial}
+\end{equation}
+
+\begin{lemma}
+\label{lem:irrminimal}
+For each fixed $k\ne0,1$, the polynomial $P$ is primitive and
+irreducible in $K[y,v,w,x]$. Its differential order is minimally three
+and its degree in the highest derivative is minimally one. Its
+coefficients generate $K=\C(\alpha,\gamma)$.
+\end{lemma}
+\begin{proof}
+The content in $K[y,v,w][x]$ can have only the factors $y,u,r$.
+They are excluded by
+\begin{equation}
+\begin{aligned}
+P|_{y=0}&=2v^4,\\
+P|_{y=-1/\alpha}&=k(k-1)v^2(v-\gamma/\alpha)^2,\\
+P|_{v=-\gamma y}&=-y^2u^2(w-\gamma^2y)^2.
+\end{aligned}
+\label{eq:irrcontent}
+\end{equation}
+These are nonzero for $k\ne0,1$. Primitivity and linearity in $x$
+give irreducibility by Gauss's lemma. The field equality in
+\eqref{eq:irrrecover} proves that no lower-order relation exists;
+linearity gives the minimal positive degree. Moreover the kernel of
+$K[y,v,w,x]\to L$ is exactly $(P)$: over $K(y,v,w)$ it is generated
+by the linear equation, and primitivity contracts this ideal to $(P)$.
+The highest-derivative terms give
+\begin{equation}
+[y^2vx]P=1,\qquad [y^3vx]P=2\alpha,\qquad [y^3x]P=\gamma.
+\label{eq:irrcoeff}
+\end{equation}
+All coefficients belong to $K$, and these recover its generators.
+\end{proof}
+
+For the differential ranking by order, $\{P\}$ is also a monic
+characteristic presentation: it has minimal rank in the prime output
+ideal, its initial is in the non-leading-variable ring, it has no
+nonconstant factor there, and a monomial coefficient is one.
+These are the same conditions as in Proposition~\ref{prop:characteristic}.
+One may therefore use \cite[Corollary~5.7 and Theorem~4.7]{OPT} with
+Lemma~\ref{lem:irrconstants}. The following direct argument spells out
+why only the true point needs to be generic.
+
+\section{Wronskians and all positive competitors}
+\label{sec:wronskian}
+We use the characteristic-zero Wronskian criterion: elements of a
+differential field are linearly independent over its constants if
+and only if their Wronskian is nonzero. For completeness, divide
+columns by a nonzero first element. Elementary row operations give
+$W(f_1,\ldots,f_n)=f_1^n W(1,f_2/f_1,\ldots,f_n/f_1)$; expansion
+along the first column reduces to the Wronskian of
+$D(f_2/f_1),\ldots,D(f_n/f_1)$. If it vanishes, induction gives a
+nontrivial constant linear combination of those derivatives equal
+to zero. Its antiderivative is a constant, giving a relation among
+the original elements. The converse follows by differentiating a
+constant linear relation. The one-element case starts the induction.
+
+For the fixed irrational $k$, let $\mathcal M$ be the union, as
+$\alpha,\gamma$ vary, of the output-monomial supports of $P$.
+Expansion of~\eqref{eq:irrP} gives $|\mathcal M|=25$ for irrational
+$k$, so the Wronskian below has $n=24$ columns. Some coefficients
+vanish at rational exponents (for example, $k=2$), but this section
+fixes an irrational exponent. All monomials have total degree at
+most six.
+The polynomial $P$ has total degree exactly six, as seen from the
+term $\alpha^2\gamma y^5x$ in~\eqref{eq:irrinitial}.
+A $K$-linear relation among the evaluations of $\mathcal M$ in $L$
+is a polynomial in the kernel $(P)$ of Lemma~\ref{lem:irrminimal}.
+Its degree is at most six, so it is a scalar multiple of $P$.
+There is exactly one relation up to scalar.
+
+Remove $m_0=y^2vx$, whose coefficient in $P$ is one. The remaining
+monomials $m_1,\ldots,m_n$ are $K$-linearly independent in $L$.
+By Lemma~\ref{lem:irrconstants} and the Wronskian criterion,
+\begin{equation}
+W=\det\bigl(D^{i-1}m_j\bigr)_{1\leq i,j\leq n}\ne0
+\quad\hbox{in }K(S,u,Z).
+\label{eq:W}
+\end{equation}
+This proves nonvanishing as a rational function; a numerical
+Wronskian calculation is not needed.
+
+Restrict the true initial point so that $W$ is defined and nonzero.
+Include the common denominator $\alpha uZ$ and the denominators used
+to write $W$; their nonvanishing defines a nonempty Zariski open set
+in the transformed parameter-state space. Any positive competitor
+with the same output obeys its own polynomial $P_*$, with parameters
+$\alpha_*,\gamma_*$ but the same fixed $k$. Its support is contained
+in $\mathcal M$, and its coefficient of $m_0$ is one. Thus $P_*-P$
+is a constant linear combination of $m_1,\ldots,m_n$ along the true
+output. Differentiate this zero relation $0,\ldots,n-1$ times and
+evaluate at time zero. The coefficient differences lie in the kernel
+of the invertible Wronskian matrix, so all are zero.
+Equation~\eqref{eq:irrcoeff} gives $\alpha_* =\alpha$ and
+$\gamma_* =\gamma$. No condition on the competitor's own Wronskian
+was imposed.
+
+\begin{proof}[Irrational case and completion of Theorem~\ref{thm:main}]
+The positive initial-coordinate map
+\begin{equation}
+(\alpha,\beta,\gamma,S_0,I_0)\longmapsto
+(\alpha,\gamma,S_0,u_0=1+\alpha I_0,Z_0=u_0^k/\beta)
+\label{eq:irrmap}
+\end{equation}
+is analytically invertible, with inverse
+$I_0=(u_0-1)/\alpha$ and $\beta=u_0^k/Z_0$.
+It carries positive solutions of~\eqref{eq:model} to
+\eqref{eq:irrmodel} and back: differentiating $u^k/Z$ along the latter
+system gives zero. The image domain is the nonempty real open set
+$\alpha,\gamma,S_0,Z_0>0$, $u_0>1$ and
+$S_0+(u_0-1)/\alpha<N_0$. A nonzero complex polynomial cannot vanish
+on that entire open set. Hence the Wronskian's nonvanishing set is
+open dense there, and its inverse image under~\eqref{eq:irrmap} is
+open dense in $\Omega_{N_0}$.
+
+For a true point there and any positive competitor, the preceding
+argument gives the same $\alpha,\gamma$. Equation~\eqref{eq:irrrecover}
+then gives the same $S,Z,u$ from the common output jets. It is defined
+at every positive competitor, since
+$y>0$, $u>1$, $r=Sy/Z>0$ and $A=-y^2ur/Z<0$.
+Finally
+\[
+\beta=\frac{u_0^k}{Z_0},\qquad I_0=y(0),\qquad
+R_0=N_0-S_0-I_0
+\]
+agree. Together with the rational case, this proves the theorem for
+every real $k\geq2$. No limiting argument from rational exponents is
+used.
+\end{proof}
+\section{Exact finite checks}
+\label{sec:checks}
+For rational exponents, two sets of computations supply 22 case records at 19 distinct exponents,
+18 of them in the theorem's range. The producer side consists of a
+SymPy program for symbolic rational-function identities and a separate
+standard-library program for sparse polynomials and finite-field
+Taylor matrices. It covers
+\[
+\frac32,\frac52,\frac72,\frac92,\frac{11}2,\frac{13}2,
+\frac{15}2,\frac{17}2,\frac{19}2,\frac73,\frac83,\frac{11}4,2,3.
+\]
+For each case, it checks~\eqref{eq:unpowered}--\eqref{eq:Q}, the
+coefficient recovery, primitivity substitutions,
+\eqref{eq:E}, \eqref{eq:symmetry} and~\eqref{eq:states}.
+The second set uses separately written sparse Laurent polynomials over
+$\mathbb Q$, with parameters left symbolic. It covers
+\[
+\frac{13}6,\frac{17}5,\frac{23}7,\frac94,\frac{31}8,2,3,\frac52
+\]
+and checks the same algebraic identities and selected coefficients.
+The three overlapping exponents are regression cases. The value
+$3/2$ is a comparison below the theorem's range, not an instance of
+Theorem~\ref{thm:main}.
+
+Only the first 14 cases have finite-field observation matrices.
+At $(\alpha,\beta,\gamma,S,z)=(2,3,5,7,2)$, Taylor series are computed
+exactly modulo $1000003$. If $m$ is the number of output monomials
+in $Q$, their series are retained through degree $m+5$ (state series
+through $m+7$). All denominators are invertible modulo this prime.
+The column for $y^q w^q$, whose coefficient is one, is removed;
+the remaining $m-1$ columns have full rank in every case. For
+$k=5/2$ the rank is $31$, and for $k=11/4$ it is $161$.
+The matrices and nonzero minors belong to the original companion
+supplement, outside this article-only extract (see its \texttt{README.md}).
+
+A nonzero minor at this point modulo the prime certifies that the
+corresponding rational-function minor is not identically zero.
+On its generic nonvanishing set, any two competing coefficient
+vectors lie in the kernel of the same observation matrix and share
+the normalized coefficient one. Their difference has that coefficient
+zero; independence of the other columns makes the difference zero.
+This certifies generic coefficient uniqueness for these fixed
+exponents. It is distinct from extrapolating a finite list to all
+rational $k$; that conclusion rests on the preceding proof.
+
+
+For irrational exponents, two producer programs evaluate the
+three-state identities using sparse Laurent arithmetic over
+$\mathbb Q$ and SymPy, respectively. Their full expansions of $P$
+agree in all 36 terms (25 output monomials). They check the original
+ODE substitution, both recovery identities, the three content
+substitutions, and the coefficients in~\eqref{eq:irrcoeff}.
+The CAS path specializes symbolically at $\sqrt5$, $\pi$ and
+$1+\sqrt2$, without replacing these values by approximate rationals.
+The constants-field transformations were also checked on 27
+Laurent monomials, totaling 90 expanded coefficient terms, with
+81 weight pairs $(i,j)\in\{-4,\ldots,4\}^2$ and rational controls;
+the all-rational-function conclusion remains the prose lemma.
+
+A separately written standard-library implementation derives state
+jets by formal Taylor integration of~\eqref{eq:irrmodel}, agrees on
+all 36 polynomial terms, and works in $\mathbb Q(\sqrt7)$ at
+$(\alpha,\gamma,S_0,I_0,Z_0)=(2,3,5,2,4)$, $(2,3,12,2,4)$ and
+$(1,1,7,3,2)$. It checks the equation and both recovery identities
+through Taylor order eight. The middle case has $y'(0)=0$ and
+$y''(0)=-3$, so it includes a local infection maximum. With $N_0=20$
+all three cases have positive $R_0$. The original companion supplement,
+outside this extract, retains a rejected missing-factor formula as a
+negative control: at the
+maximum its initial residual vanishes but the next Taylor coefficient
+does not. This shows why checking a single value is insufficient.
+Neither these examples nor the 27 monomial tests are a computation
+of the general Wronskian in~\eqref{eq:W}.
+
+\section{Scope of the conclusion}
+\label{sec:scope}
+The theorem covers all real exponents $k\geq2$, each fixed and known,
+on the positive domain. It neither compares different unknown
+exponents nor asserts a common generic set for all $k$. The generic
+set in the original coordinates is open dense; Zariski openness in
+those coordinates is not claimed. In the irrational case the initial
+coordinate change uses $u^k$ and is analytic rather than algebraic.
+Unknown $N_0$, identifiability at every initial point, and stable
+recovery from finite noisy observations remain outside the result.
+
+The rational proof in fact only requires $p>q$, hence also applies
+to fixed rational $1<k<2$: the logarithmic-derivative pole has order
+$p-q+1\geq2$, the content calculation uses $p-q>0$, and the recovery
+coefficients remain valid; $q=1$ then already means $p\geq2$.
+The irrational argument likewise uses only irrationality and
+$k\ne0,1$; it remains valid for every irrational real $k$, with the
+exclusions automatic for irrational $k$. These observations are scope
+notes, not extensions of the main theorem's stated range $k\geq2$.
+
+The auxiliary-state construction and large-exponent argument of S9
+are prior work. The contribution here is the explicit treatment of
+the constants, minimal equations, exceptional exponents and positive
+competitors across the stated range. A bounded literature comparison
+found no matching all-real-exponent theorem in the sources examined;
+this does not establish priority or exclude other formulations known
+to specialists.
+\section*{AI-use statement}
+AI systems assisted with proof development, separate checks of the
+proof and algebra, literature organization, computation and manuscript
+drafting. The author is responsible for the mathematical claims and
+their stated scope; AI systems are not authors.
+
+{\raggedright
+\begin{thebibliography}{9}
+\bibitem{PSP}
+B. Pant, O. Saucedo and G. Pogudin,
+``Uncovering identifiability of epidemiological models: basic
+reproduction number and complementary data streams,''
+medRxiv, version 2 (25 January 2026),
+\href{https://doi.org/10.64898/2026.01.16.26344284}{doi:10.64898/2026.01.16.26344284}.
+\bibitem{PSPsupp}
+B. Pant, O. Saucedo and G. Pogudin,
+Supplementary material to \cite{PSP}, version 2, Sections S8 and S9,
+\url{https://www.medrxiv.org/content/medrxiv/early/2026/01/25/2026.01.16.26344284/DC1/embed/media-1.pdf}.
+\bibitem{OPT}
+A. Ovchinnikov, G. Pogudin and P. Thompson,
+``Parameter identifiability and input--output equations,''
+\emph{Appl. Algebra Engrg. Comm. Comput.} \textbf{34}(2), 165--182
+(2023; published online 2021),
+\href{https://doi.org/10.1007/s00200-021-00486-8}{doi:10.1007/s00200-021-00486-8};
+\href{https://arxiv.org/abs/2007.14787v2}{arXiv:2007.14787v2}.
+The numbering used here is that of the cited arXiv version.
+\bibitem{HOPY}
+H. Hong, A. Ovchinnikov, G. Pogudin and C. Yap,
+``Global identifiability of differential models,''
+\emph{Comm. Pure Appl. Math.} \textbf{73}(9), 1831--1879 (2020),
+\href{https://doi.org/10.1002/cpa.21921}{doi:10.1002/cpa.21921};
+\href{https://arxiv.org/abs/1801.08112v5}{arXiv:1801.08112v5}.
+The lemma number refers to the cited arXiv version.
+\bibitem{V1}
+T. Takimoto,
+``Global identifiability of a behavioral SIR model for every integer
+saturation exponent $k\geq2$,'' article version 1.1, release 1.0.0
+(22 October 2026),
+\href{https://doi.org/10.5281/zenodo.23553807}{doi:10.5281/zenodo.23553807}.
+\end{thebibliography}
+}
+\end{document}

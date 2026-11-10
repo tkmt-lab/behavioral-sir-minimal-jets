@@ -1,0 +1,39 @@
+{
+  "title": "Minimal jet orders in a positive behavioral SIR model",
+  "upload_type": "publication",
+  "publication_type": "preprint",
+  "version": "1.0.0",
+  "license": "cc-by-4.0",
+  "description": "<p>For each fixed, known k=2,3,5/2 and known N0&gt;0 in the positive behavioral SIR model, the least exact jet order at one time is four for generic local identification and five for generic global identification against every positive competitor with the same k and N0. Exact same-J4 pairs with nonsingular Jacobians give a nonempty open set of fourth-order ambiguity. These certificates help researchers distinguish local identifiability from uniqueness throughout the positive domain.</p>\n<p>The fifth-order upper bound applies the observation-field theorem of Demin, Pogudin and Rackauckas; cover observability is proved in Lemma 3 and Appendix B, with a fixed companion reference. The packet includes three algebraic certificates, separately written checkers, seven interval records and standard-library offline reproduction. The k=7/2 and 1+sqrt(2) records are supplementary examples. The proof combines prose arguments with exact finite checks. Reviewed versions, independence boundaries and the scopes of the separate AI reviews are documented in VERIFICATION-RECORD.md; responses are in REVIEW-RESPONSE.md.</p>\n<h2>Scope</h2>\n<p>The theorem assumes known k and N0 and exact derivatives in the positive domain. The supplementary exponents do not extend the main theorem. The result does not classify all exponents, exceptional points or positive fibers, give expanded J5 inverse formulas, or guarantee recovery or stability from noisy samples. It has not been formalized in a proof assistant or reviewed by human experts. The Appendix B review covered only the stated proof and fifth-order reduction. The verification record documents further review and software boundaries.</p>\n<p>Article 1.0 / packet 1.0.0, release edition dated 10 November 2026. Code Apache-2.0; article, text and generated data CC BY 4.0.</p>",
+  "creators": [
+    {
+      "name": "Tatsuhiko Takimoto",
+      "affiliation": "Independent researcher"
+    }
+  ],
+  "keywords": [
+    "structural identifiability",
+    "behavioral SIR",
+    "minimal jet order",
+    "positive real domain",
+    "exact certificates"
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "https://arxiv.org/abs/2609.06134v3",
+      "relation": "references",
+      "scheme": "url"
+    },
+    {
+      "identifier": "10.64898/2026.01.16.26344284",
+      "relation": "references",
+      "scheme": "doi"
+    },
+    {
+      "identifier": "https://github.com/tkmt-lab/behavioral-sir-minimal-jets",
+      "relation": "isSupplementTo",
+      "scheme": "url"
+    }
+  ],
+  "publication_date": "2026-11-10"
+}

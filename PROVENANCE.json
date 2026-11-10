@@ -1,0 +1,222 @@
+{
+  "version": "1.0.0",
+  "article_version": "1.0",
+  "status": "release-edition",
+  "author": "Tatsuhiko Takimoto",
+  "source_derivatives": "source-derivatives.json",
+  "release_date": "2026-11-10",
+  "repository_code": "https://github.com/tkmt-lab/behavioral-sir-minimal-jets",
+  "files": [
+    {
+      "path": ".github/workflows/verify.yml",
+      "bytes": 649,
+      "sha256": "df6fcd7f5fafc537ee4e2f3204da6641d031f6149416075c3977cf6050131f2f"
+    },
+    {
+      "path": ".zenodo.json",
+      "bytes": 2763,
+      "sha256": "f786d89a6cfdf875a9ee658a65f11994a4ed17aec0ac4f1754fd11eb607fafd3"
+    },
+    {
+      "path": "AGENTS.md",
+      "bytes": 1852,
+      "sha256": "1a1bc507bc47d15df384a9507ea1fd44159988e35bb2fe8830ce9bfd702137b8"
+    },
+    {
+      "path": "Apache-2.0.txt",
+      "bytes": 11358,
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+    },
+    {
+      "path": "CC-BY-4.0.txt",
+      "bytes": 18657,
+      "sha256": "9ba9550ad48438d0836ddab3da480b3b69ffa0aac7b7878b5a0039e7ab429411"
+    },
+    {
+      "path": "CHANGELOG.md",
+      "bytes": 729,
+      "sha256": "034b6d17a1ecaa7381980e2d8d331710aa189eba2069619d6a8be6e0b9c904f9"
+    },
+    {
+      "path": "CITATION.cff",
+      "bytes": 1062,
+      "sha256": "bdda4ebda4e0de66d51afb9e8ace859b530ff1a55315ea72dea82c5e1fe54146"
+    },
+    {
+      "path": "EVIDENCE.md",
+      "bytes": 4380,
+      "sha256": "c699417cdb7be1096571f0056bdfa79132bff4c07887783e37954d9f9ccccba7"
+    },
+    {
+      "path": "LICENSE",
+      "bytes": 341,
+      "sha256": "ad4723a917c0e1bc0c65b78ca75a90c0f62965edc3a8dc49ebb5b7750863b16b"
+    },
+    {
+      "path": "README.ja.md",
+      "bytes": 8669,
+      "sha256": "0cc4b539d68b00b1358a794f7a9b9e39b135c9066679ecd027139407641aead9"
+    },
+    {
+      "path": "README.md",
+      "bytes": 8501,
+      "sha256": "50829c2cfff4181bf750222b2ddd97b7b601ad47489e2d8e157c9a8d64c0d744"
+    },
+    {
+      "path": "REVIEW-RESPONSE.md",
+      "bytes": 368,
+      "sha256": "076a8a923be8f19f9a2adac7ae1b342f882d977618be20053b1bf6466055e549"
+    },
+    {
+      "path": "VERIFICATION-RECORD.md",
+      "bytes": 27849,
+      "sha256": "94cb9a77936bd3e973dbe54ee92a84a8724cfd0cdafe8330947b5c1738be4003"
+    },
+    {
+      "path": "article-cases.json",
+      "bytes": 3756,
+      "sha256": "4f4b0ddec51cd6023888f864b266411f0433ec503214f54c8f351e94f02f484a"
+    },
+    {
+      "path": "build_tables.py",
+      "bytes": 4107,
+      "sha256": "6c38d52ec1e0d66750941a35781c65328da585f77a18990e4a491c547694826c"
+    },
+    {
+      "path": "certificate-tables.tex",
+      "bytes": 1530,
+      "sha256": "e00ad10998c48ddd73197e60651a14895d33a4d08421fc53c3d70c42e9a31bd7"
+    },
+    {
+      "path": "check_observability.py",
+      "bytes": 5559,
+      "sha256": "e947fb51e835423bb2a2810ab3d49f9db97a58e7f0a09c93a7dbcd1f4831d75a"
+    },
+    {
+      "path": "check_packet.py",
+      "bytes": 8550,
+      "sha256": "3d96f043bfdf0ea905c2767b7590b3fef87a4f7fce0a98cd5d890301be72739d"
+    },
+    {
+      "path": "claims.json",
+      "bytes": 9647,
+      "sha256": "b6d87284866c09a585800a206af6c62f00fd587e195c580c96bd87c984e0d78d"
+    },
+    {
+      "path": "companion/README.md",
+      "bytes": 2199,
+      "sha256": "42a524419b22c4d6b4d86c898b35445539ac2b6cf1cff8993b995a6ca3ce9916"
+    },
+    {
+      "path": "companion/paper-behavioral-sir-v3.0-en.pdf",
+      "bytes": 397741,
+      "sha256": "ab6e2378648e9da9972c19ec79ed9a32c9503bcf8b50f27020cf9d63011b4e14"
+    },
+    {
+      "path": "companion/paper-behavioral-sir-v3.0-en.tex",
+      "bytes": 35267,
+      "sha256": "6689d03fc3aaeeb9741b60c4169c831e5ecb3b20eb1884a36baa09985d940d3b"
+    },
+    {
+      "path": "independent/certify_pairs.py",
+      "bytes": 4585,
+      "sha256": "523eb1194200c9d493c3620fe90934ea0eaed7c97b4e0e13245d388b8491a420"
+    },
+    {
+      "path": "independent/check_source_certificate.py",
+      "bytes": 7191,
+      "sha256": "abfc28eb237e7b5ee873fea3fcf821db44b02dfba0afb16f017ea366f62b9da0"
+    },
+    {
+      "path": "independent/extra-pairs.json",
+      "bytes": 22973,
+      "sha256": "c61e5611474e5f10bfdb393d500a8904120a284087f5a278dcb656436590ec23"
+    },
+    {
+      "path": "independent/extra_pairs.py",
+      "bytes": 2447,
+      "sha256": "f419e574f7ce8dbd75bc99f77aeba58cb688ccfbc284de08cf5feeeb254b5699"
+    },
+    {
+      "path": "independent/source-certificate-check.json",
+      "bytes": 10084,
+      "sha256": "260d370720262b2588e1f83c7bfcae1a75802f91f596829ec8ded4ec57ee2bae"
+    },
+    {
+      "path": "independent/stage1-certified-pairs.json",
+      "bytes": 46559,
+      "sha256": "fc623f4d02fb25aded94eb2c80d7ecee9ec93c4c33973b67479167a9c505f5c8"
+    },
+    {
+      "path": "independent/stage1-exploration.json",
+      "bytes": 6103,
+      "sha256": "117657ca97080761b70382fec49217c17181676c8346e9e3909ba4bdb2487649"
+    },
+    {
+      "path": "independent/stage1_explore.py",
+      "bytes": 3290,
+      "sha256": "6503abec82e0285aed037c0c229c915e44f2c657372a5dadd895955eacf44161"
+    },
+    {
+      "path": "observability-check.json",
+      "bytes": 1489,
+      "sha256": "6e84334b7804113ba8214256edf33c2ecd1a866902aab34081900a13f10c4c84"
+    },
+    {
+      "path": "paper-sir-minimal-jets-v1-en.pdf",
+      "bytes": 416853,
+      "sha256": "a4337166c55777a79f55cd2d0e10fb78425f376323d192344f428cdfeb05db45"
+    },
+    {
+      "path": "paper-sir-minimal-jets-v1-en.tex",
+      "bytes": 29419,
+      "sha256": "adb5299830ae9386cb8bca5fe9ee12052ba53598976f3b1f289d89a4a388d394"
+    },
+    {
+      "path": "pdf-validation.json",
+      "bytes": 1307,
+      "sha256": "ef09f6f9e5a2c788a495be95c4bfa5963b898900434a1619596fdaabccdb1198"
+    },
+    {
+      "path": "producer/limits.py",
+      "bytes": 431,
+      "sha256": "655edf6fadaa1365b7b8f94210321a6e91a62c53715a3ec0cf03b79cafed5552"
+    },
+    {
+      "path": "producer/output/certificate-check.json",
+      "bytes": 6607,
+      "sha256": "b5c9166ea2115d378f0ce7e08ae51f48384e266c8ddf24921537246ac7bdb2d9"
+    },
+    {
+      "path": "producer/output/certificate.json",
+      "bytes": 2340,
+      "sha256": "8272852f1c4060380259d65bd146badbe40f83fb03c1347afd2dec538fde4c82"
+    },
+    {
+      "path": "producer/verify_certificate.py",
+      "bytes": 7008,
+      "sha256": "33d7900e0277598fd802c08d164e9d13075d98baeb85511af3f53f6d0e60379f"
+    },
+    {
+      "path": "source-derivatives.json",
+      "bytes": 7082,
+      "sha256": "748ebb947fb44ce8834de4c921761643db924d35af2e4f8613495e46e8cad2ed"
+    },
+    {
+      "path": "verify.py",
+      "bytes": 3326,
+      "sha256": "2cc5ad709d993310d7a069569a77bdd540f2ec94ab07bb6d146bf673c9c30789"
+    },
+    {
+      "path": "verify_intervals.py",
+      "bytes": 2755,
+      "sha256": "5cd32ff9f1f1c2434ffb671a0ba27254de560ec889b14b1a04a4a1c5639c2cbf"
+    },
+    {
+      "path": "version-plan.json",
+      "bytes": 728,
+      "sha256": "354ca307d4b15a04a2ed02d4955b7a42e6988814d2ea162ddf4e65a2b653215d"
+    }
+  ],
+  "verification_record": "VERIFICATION-RECORD.md"
+}

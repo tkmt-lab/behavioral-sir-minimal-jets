@@ -1,0 +1,166 @@
+{
+  "input_commit": "5fd0f5ab545ddab3b5915d2cd720eb32176717c6",
+  "records": [
+    {
+      "source": "original-input:producer/limits.py",
+      "path": "producer/limits.py",
+      "source_bytes": 416,
+      "source_sha256": "e62e302ac9220c6ead4692f0261931da145041fa1b9d4311fc919bca8ec78842",
+      "bytes": 431,
+      "sha256": "655edf6fadaa1365b7b8f94210321a6e91a62c53715a3ec0cf03b79cafed5552",
+      "changed": true,
+      "change": "Public resource-limit diagnostic only"
+    },
+    {
+      "source": "original-input:producer/verify_certificate.py",
+      "path": "producer/verify_certificate.py",
+      "source_bytes": 7008,
+      "source_sha256": "33d7900e0277598fd802c08d164e9d13075d98baeb85511af3f53f6d0e60379f",
+      "bytes": 7008,
+      "sha256": "33d7900e0277598fd802c08d164e9d13075d98baeb85511af3f53f6d0e60379f",
+      "changed": false,
+      "change": "none"
+    },
+    {
+      "source": "original-input:producer/output/certificate.json",
+      "path": "producer/output/certificate.json",
+      "source_bytes": 2340,
+      "source_sha256": "8272852f1c4060380259d65bd146badbe40f83fb03c1347afd2dec538fde4c82",
+      "bytes": 2340,
+      "sha256": "8272852f1c4060380259d65bd146badbe40f83fb03c1347afd2dec538fde4c82",
+      "changed": false,
+      "change": "none"
+    },
+    {
+      "source": "original-input:producer/output/certificate-check.json",
+      "path": "producer/output/certificate-check.json",
+      "source_bytes": 6607,
+      "source_sha256": "b5c9166ea2115d378f0ce7e08ae51f48384e266c8ddf24921537246ac7bdb2d9",
+      "bytes": 6607,
+      "sha256": "b5c9166ea2115d378f0ce7e08ae51f48384e266c8ddf24921537246ac7bdb2d9",
+      "changed": false,
+      "change": "none"
+    },
+    {
+      "source": "original-input:independent/stage1_explore.py",
+      "path": "independent/stage1_explore.py",
+      "source_bytes": 3286,
+      "source_sha256": "f35160c64a060dfbe29a5b0ada265d89c303b48e0ab588cca2c9488d0780bc37",
+      "bytes": 3290,
+      "sha256": "6503abec82e0285aed037c0c229c915e44f2c657372a5dadd895955eacf44161",
+      "changed": true,
+      "change": "Public exploration docstring only"
+    },
+    {
+      "source": "original-input:independent/certify_pairs.py",
+      "path": "independent/certify_pairs.py",
+      "source_bytes": 4585,
+      "source_sha256": "523eb1194200c9d493c3620fe90934ea0eaed7c97b4e0e13245d388b8491a420",
+      "bytes": 4585,
+      "sha256": "523eb1194200c9d493c3620fe90934ea0eaed7c97b4e0e13245d388b8491a420",
+      "changed": false,
+      "change": "none"
+    },
+    {
+      "source": "original-input:independent/extra_pairs.py",
+      "path": "independent/extra_pairs.py",
+      "source_bytes": 2447,
+      "source_sha256": "f419e574f7ce8dbd75bc99f77aeba58cb688ccfbc284de08cf5feeeb254b5699",
+      "bytes": 2447,
+      "sha256": "f419e574f7ce8dbd75bc99f77aeba58cb688ccfbc284de08cf5feeeb254b5699",
+      "changed": false,
+      "change": "none"
+    },
+    {
+      "source": "original-input:independent/check_source_certificate.py",
+      "path": "independent/check_source_certificate.py",
+      "source_bytes": 7209,
+      "source_sha256": "04a9e8fd644bec7cecac110a9bf7b6ce960f27acfe3c6b9c7776101f692ab9df",
+      "bytes": 7191,
+      "sha256": "abfc28eb237e7b5ee873fea3fcf821db44b02dfba0afb16f017ea366f62b9da0",
+      "changed": true,
+      "change": "Git lookup replaced by bundled input bytes; source keys now packet-relative"
+    },
+    {
+      "source": "original-input:independent/stage1-exploration.json",
+      "path": "independent/stage1-exploration.json",
+      "source_bytes": 6103,
+      "source_sha256": "117657ca97080761b70382fec49217c17181676c8346e9e3909ba4bdb2487649",
+      "bytes": 6103,
+      "sha256": "117657ca97080761b70382fec49217c17181676c8346e9e3909ba4bdb2487649",
+      "changed": false,
+      "change": "none"
+    },
+    {
+      "source": "original-input:independent/stage1-certified-pairs.json",
+      "path": "independent/stage1-certified-pairs.json",
+      "source_bytes": 46559,
+      "source_sha256": "fc623f4d02fb25aded94eb2c80d7ecee9ec93c4c33973b67479167a9c505f5c8",
+      "bytes": 46559,
+      "sha256": "fc623f4d02fb25aded94eb2c80d7ecee9ec93c4c33973b67479167a9c505f5c8",
+      "changed": false,
+      "change": "none"
+    },
+    {
+      "source": "original-input:independent/extra-pairs.json",
+      "path": "independent/extra-pairs.json",
+      "source_bytes": 22973,
+      "source_sha256": "c61e5611474e5f10bfdb393d500a8904120a284087f5a278dcb656436590ec23",
+      "bytes": 22973,
+      "sha256": "c61e5611474e5f10bfdb393d500a8904120a284087f5a278dcb656436590ec23",
+      "changed": false,
+      "change": "none"
+    },
+    {
+      "source": "original-input:independent/source-certificate-check.json",
+      "path": "independent/source-certificate-check.json",
+      "source_bytes": 10104,
+      "source_sha256": "40aff0858a82c3e23c6038c46ffcd5d38d6cd72f8a1aa58595ddf17108391411",
+      "bytes": 10084,
+      "sha256": "260d370720262b2588e1f83c7bfcae1a75802f91f596829ec8ded4ec57ee2bae",
+      "changed": true,
+      "change": "Source keys changed to packet-relative paths only; mathematical and runtime fields preserved"
+    },
+    {
+      "source": "original-input:companion/paper-behavioral-sir-v3.0-en.tex",
+      "path": "companion/paper-behavioral-sir-v3.0-en.tex",
+      "source_bytes": 35037,
+      "source_sha256": "9f790181cca548a5504c1f6fdbcd549262fa6ae9b9f3798b30d2b4a2e149d8fc",
+      "bytes": 35267,
+      "sha256": "6689d03fc3aaeeb9741b60c4169c831e5ecb3b20eb1884a36baa09985d940d3b",
+      "changed": true,
+      "change": "Publication display edition label and distribution-scope notes; mathematical statements, formulas, numerical values and numbering preserved"
+    },
+    {
+      "source": "original-input:companion/paper-behavioral-sir-v3.0-en.pdf",
+      "path": "companion/paper-behavioral-sir-v3.0-en.pdf",
+      "source_bytes": 119052,
+      "source_sha256": "19996f540be372161128d8d9198066366115399f2e32ad55aef3df97ee8848d4",
+      "bytes": 397741,
+      "sha256": "ab6e2378648e9da9972c19ec79ed9a32c9503bcf8b50f27020cf9d63011b4e14",
+      "changed": true,
+      "change": "Rebuilt from publication display TeX with pdfLaTeX; original PDF fingerprint preserved"
+    },
+    {
+      "source": "original-input:Apache-2.0.txt",
+      "path": "Apache-2.0.txt",
+      "source_bytes": 11358,
+      "source_sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+      "bytes": 11358,
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+      "changed": false,
+      "change": "none"
+    },
+    {
+      "source": "original-input:CC-BY-4.0.txt",
+      "path": "CC-BY-4.0.txt",
+      "source_bytes": 18657,
+      "source_sha256": "9ba9550ad48438d0836ddab3da480b3b69ffa0aac7b7878b5a0039e7ab429411",
+      "bytes": 18657,
+      "sha256": "9ba9550ad48438d0836ddab3da480b3b69ffa0aac7b7878b5a0039e7ab429411",
+      "changed": false,
+      "change": "none"
+    }
+  ],
+  "source_naming": "Neutral original-input identifiers; source_bytes and source_sha256 identify the original bytes. Packaged paths identify the presentation derivatives."
+}
